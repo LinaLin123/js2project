@@ -24,7 +24,7 @@ function showProducts(products){
     "<p>"+description+"</p>" +
     "<p>"+price+"kr</p>"+
     "<button type='submit'>Order</button>"+
-    "</div><br>"
+    "</div>"
   }
 }
 
