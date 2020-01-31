@@ -3,27 +3,28 @@ let body = document.querySelector("body")
 let dispDiv = document.getElementById("dispProd")
 
 // display products
-// image
-// name
-// description
-// price
 // dropdown to choose from
 // submit button  - add product to basket -eventlistner 
-fetch('protucts.json')
-.then(prods => console.log(prods))
+fetch('products.json')
+.then(prods => prods.json())
+.then(prods => showProducts(prods) )
 
-function showProducts(user){
-  for(let i = 0; i < user.length; i++){
+function showProducts(products){
+  for(let i = 0; i < products.products.length; i++){
+  let imageAddress = products.products[i].image
+  let name = products.products[i].name
+  let description = products.products[i].description
+  let price = products.products[i].price
+  
+  let test = `Hej på dig ${name}`
 
-  let name = user[i].name
-  let city = user[i].address.city
-  document.getElementById("dispProd").innerHTML += 
-  "<div class='card' style='width: 15rem;' >" +
-    "<h2>" + 
-  name + 
-    "</h2>" +
-    "<p>" +
-  city + "</p></div><br>"
+  dispDiv.innerHTML += 
+  "<div id='prod"+i+"' class='prod'><img src='" + imageAddress + "'>"  +
+    "<h2>" + name + "</h2>" + 
+    "<p>"+description+"</p>" +
+    "<p>"+price+"kr</p>"+
+    "<button type='submit'>Order</button>"+
+    "</div><br>"
   }
 }
 
