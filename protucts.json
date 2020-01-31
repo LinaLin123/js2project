@@ -1,7 +1,81 @@
-{
+{"products":[{
   "id": 1,
   "name": "Maldives",
   "price": "2000",
   "description": "info",
-  "image": "urladress"
+  "image": "images/maldiverna.jpg"
+ },
+
+ {
+  "id": 2,
+  "name": "Bali",
+  "price": "1000",
+  "description": "info",
+  "image": "images/bali.jpg"
+ },
+
+ {
+  "id": 3,
+  "name": "Grand Canyon",
+  "price": "2500",
+  "description": "info",
+  "image": "images/grandcanyon.jpg"
+ },
+
+ {
+  "id": 4,
+  "name": "Isfahan",
+  "price": "2600",
+  "description": "info",
+  "image": "images/isfahan.jpg"
+ },
+
+ {
+  "id": 5,
+  "name": "Japan",
+  "price": "1500",
+  "description": "info",
+  "image": "images/japan.jpg"
+ },
+
+ {
+  "id": 6,
+  "name": "Kenya",
+  "price": "2050",
+  "description": "info",
+  "image": "images/kenya.jpg"
+ },
+
+ {
+  "id": 7,
+  "name": "Norway",
+  "price": "1000",
+  "description": "info",
+  "image": "images/norway.jpeg"
+ },
+
+ {
+  "id": 8,
+  "name": "Peru",
+  "price": "2500",
+  "description": "info",
+  "image": "images/peru.jpg"
+ },
+
+ {
+  "id": 9,
+  "name": "Sweden",
+  "price": "3500",
+  "description": "info",
+  "image": "images/sweden.jpeg"
+ },
+
+ {
+  "id": 10,
+  "name": "Thailand",
+  "price": "1600",
+  "description": "info",
+  "image": "images/thailand.jpg"
  }
+
+]}
