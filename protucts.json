@@ -3,7 +3,7 @@
   "name": "Maldives",
   "price": "2000",
   "description": "info",
-  "image": "urladress"
+  "image": "images/maldiverna.jpg"
  },
 
  {
@@ -11,7 +11,7 @@
   "name": "Bali",
   "price": "1000",
   "description": "info",
-  "image": "urladress"
+  "image": "images/bali.jpg"
  },
 
  {
@@ -19,7 +19,7 @@
   "name": "Grand Canyon",
   "price": "2500",
   "description": "info",
-  "image": "urladress"
+  "image": "images/grandcanyon.jpg"
  },
 
  {
@@ -27,7 +27,7 @@
   "name": "Isfahan",
   "price": "2600",
   "description": "info",
-  "image": "urladress"
+  "image": "images/isfahan.jpg"
  },
 
  {
@@ -35,7 +35,7 @@
   "name": "Japan",
   "price": "1500",
   "description": "info",
-  "image": "urladress"
+  "image": "images/japan.jpg"
  },
 
  {
@@ -43,7 +43,7 @@
   "name": "Kenya",
   "price": "2050",
   "description": "info",
-  "image": "urladress"
+  "image": "images/kenya.jpg"
  },
 
  {
@@ -51,7 +51,7 @@
   "name": "Norway",
   "price": "1000",
   "description": "info",
-  "image": "urladress"
+  "image": "images/norway.jpeg"
  },
 
  {
@@ -59,7 +59,7 @@
   "name": "Peru",
   "price": "2500",
   "description": "info",
-  "image": "urladress"
+  "image": "images/peru.jpg"
  },
 
  {
@@ -67,7 +67,7 @@
   "name": "Sweden",
   "price": "3500",
   "description": "info",
-  "image": "urladress"
+  "image": "images/sweden.jpeg"
  },
 
  {
@@ -75,7 +75,7 @@
   "name": "Thailand",
   "price": "1600",
   "description": "info",
-  "image": "urladress"
+  "image": "images/thailand.jpg"
  }
- 
+
 ]}
