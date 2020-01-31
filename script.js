@@ -19,7 +19,7 @@ function showProducts(products){
   let test = `Hej på dig ${name}`
 
   dispDiv.innerHTML += 
-  "<div id='prod"+i+"' class='prod'><img src='" + imageAddress + "'>"  +
+  "<div id='prod"+i+"' class='prod'><img src='" + imageAddress + "' class='prodImg'>"  +
     "<h2>" + name + "</h2>" + 
     "<p>"+description+"</p>" +
     "<p>"+price+"kr</p>"+
