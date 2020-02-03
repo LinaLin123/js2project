@@ -1,13 +1,4 @@
-// let select = document.getElementById('select');
+// connect to HTML-document
+let dispDiv = document.getElementById("dispCart")
 
-// select.addEventListener('change', function(e){
-//     // hämta från en dropdown-lista
-
-//     console.log(e);
-    
-//     let antal = select.value;
-//     antal = e.target.value;
-    
-//     const url = "https://api.namnapi.se/v2/names.json?limit="+antal;
-//     load(url, showList);
-//   });
+// display cart
