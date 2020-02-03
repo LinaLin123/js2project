@@ -36,12 +36,15 @@ function showProducts(products){
 }
 
 // vi behöver en funktion som skickar value till basket
+// sätta eventLister på formuläret istället? För att lättare komma åt informationen inom this
 // gör en addEventListner som reagerar på knapp tryck
 function addListnerToBtn(){
   let allBtns = document.querySelectorAll("button")
   allBtns.forEach(btn => {
     btn.addEventListener('click',function(){
-      console.log("Du la till " + this.previousSibling.previousSibling.previousSibling.value + " produkter")
+      console.log("Added " + this.previousSibling.previousSibling.previousSibling.value + " " 
+      + this.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML 
+      + "-tickets to basket ")
     })
   });
 }
