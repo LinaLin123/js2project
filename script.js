@@ -41,7 +41,7 @@ function addListnerToBtn(){
   let allBtns = document.querySelectorAll("button")
   allBtns.forEach(btn => {
     btn.addEventListener('click',function(){
-      console.log("Du klickade på mig")
+      console.log("Du la till " + this.previousSibling.previousSibling.previousSibling.value + " produkter")
     })
   });
 }
