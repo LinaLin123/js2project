@@ -21,7 +21,7 @@ function showProducts(products){
     "<h2>" + name + "</h2>" + 
     "<p>"+description+"</p>" +
     "<p>"+price+"kr</p>"+
-    "<select id='select'>" + 
+    "<select id='select"+i+"'>" + 
     "<option value='0'>Välj antal</option>" +
     "<option value='1'>1</option>" +
     "<option value='2'>2</option>" +
@@ -29,11 +29,19 @@ function showProducts(products){
     "<option value='4'>4</option>" +
     "<option value='5'>5</option>" +
     "</select><br><br>" +
-    "<button type='submit' id='submitbtn'>Add to basket</button>"+
+    "<button type='submit' id='submitbtn"+i+"'>Add to basket</button>"+
     "</div>"
   }
+  addListnerToBtn()
 }
-
 
 // vi behöver en funktion som skickar value till basket
 // gör en addEventListner som reagerar på knapp tryck
+function addListnerToBtn(){
+  let allBtns = document.querySelectorAll("button")
+  allBtns.forEach(btn => {
+    btn.addEventListener('click',function(){
+      console.log("Du klickade på mig")
+    })
+  });
+}
