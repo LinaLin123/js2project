@@ -16,17 +16,24 @@ function showProducts(products){
   let description = products.products[i].description
   let price = products.products[i].price
   
-  let test = `Hej på dig ${name}`
-
   dispDiv.innerHTML += 
-  "<div id='prod"+i+"' class='prod'><img src='" + imageAddress + "' class='prodImg'>"  +
+    "<div id='prod"+i+"' class='prod'><img src='" + imageAddress + "' class='prodImg'>"  +
     "<h2>" + name + "</h2>" + 
     "<p>"+description+"</p>" +
     "<p>"+price+"kr</p>"+
-    "<button type='submit'>Order</button>"+
+    "<select id='select'>" + 
+    "<option value='0'>Välj antal</option>" +
+    "<option value='1'>1</option>" +
+    "<option value='2'>2</option>" +
+    "<option value='3'>3</option>" +
+    "<option value='4'>4</option>" +
+    "<option value='5'>5</option>" +
+    "</select><br><br>" +
+    "<button type='submit' id='submitbtn'>Add to basket</button>"+
     "</div>"
   }
 }
 
 
-// product basket
+// vi behöver en funktion som skickar value till basket
+// gör en addEventListner som reagerar på knapp tryck
