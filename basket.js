@@ -1,3 +1,3 @@
 // connect to HTML-document
-let dispDiv = document.getElementById("dispCart")
+let dispCart = document.getElementById("dispCart")
 // display cart
