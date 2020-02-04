@@ -93,3 +93,5 @@ function addListnerToBtn(){
     })
   })
 }
+
+console.log(localStorage.getItem("Bali"))
