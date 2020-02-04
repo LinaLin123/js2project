@@ -2,17 +2,15 @@
 let dispCart = document.getElementById("dispCart")
 // display cart
 
-
 fetch( 'products.json' )
 .then( names => names.json() )
-.then( names => getUpdatedProds( names ) )
+.then( names => getNames( names ) )
 
-function getUpdatedProds (names){
+function getNames (names){
   for(let i = 0; i < names.products.length; i++){
     let name = names.products[i].name
-    console.log(name)
     // hämtar värdet
     localStorage.getItem( name )
-    console.log(localStorage.getItem( name ))
+    console.log("Name: " + name + " Tickets: " + localStorage.getItem( name ))
   }
 }
