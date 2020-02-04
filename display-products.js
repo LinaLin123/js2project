@@ -81,25 +81,22 @@ function addListnerToBtn(){
       // get current value
       let eSelectVal = this.parentElement.children[4].value
       eSelectVal = parseInt(eSelectVal)
-      console.log(typeof(eSelectVal));
-      
 
       // get current price
       let ePrice = this.parentElement.children[3].innerHTML
       ePrice = parseInt(ePrice)
 
-      // current amount of tickets
+      // current amount of tickets FIXA TILL NUMMER
       let eTickets = localStorage.getItem(eName)
-      eTickets = parseInt(eTickets)
+      eTickets = JSON.parse(eTickets)
 
       // feedback that you've added products to basket
-      console.log("Added " + eSelectVal + " " + eName + "-tickets to basket ")
+      // console.log("Added " + eSelectVal + " " + eName + "-tickets to basket ")
       
 
       // either set an amount for the first time or add together with previous amount
       // it's a string currently and must be a number
       if( eTickets == null || eTickets == 0 ){
-        console.log(eTickets)        
         localStorage.setItem( eName, [eSelectVal, ePrice, eSelectVal*ePrice] )
         console.log("Set first amount to: " + localStorage.getItem(eName))
       } else {
@@ -113,6 +110,10 @@ function addListnerToBtn(){
       
       // reset button value
       this.parentElement.children[4].value  = 0
+      console.table( localStorage )
+      console.log(localStorage.getItem(eName))
+      console.log(typeof(localStorage.getItem(eName)))
+
     })
   })
 }
