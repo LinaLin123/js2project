@@ -4,7 +4,7 @@
   "price": 2000,
   "description": "info",
   "image": "images/maldiverna.jpg",
-  "amount": 0
+  "amount": 3
 
  },
 
@@ -14,7 +14,7 @@
   "price": 1000,
   "description": "info",
   "image": "images/bali.jpg",
-  "amount": 0
+  "amount": 4
  },
 
  {
@@ -23,7 +23,7 @@
   "price": 2500,
   "description": "info",
   "image": "images/grandcanyon.jpg",
-  "amount": 0
+  "amount": 5
  },
 
  {

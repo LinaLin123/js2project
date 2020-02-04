@@ -3,7 +3,6 @@ let body = document.querySelector("body")
 let dispDiv = document.getElementById("dispProd")
 
 // number of tickets ordered
-let orders = 
 
 // display products
 // dropdown to choose from
@@ -11,6 +10,8 @@ let orders =
 fetch( 'products.json' )
 .then( prods => prods.json() )
 .then( prods => showProducts( prods ) )
+
+console.table(localStorage)
 
 function showProducts( products ){
   for(let i = 0; i < products.products.length; i++){
@@ -52,17 +53,13 @@ function addListnerToBtn(){
   let allBtns = document.querySelectorAll("button")
   allBtns.forEach( btn => {
     btn.addEventListener('click',function(){ 
+      // get current name
+      let currentName = this.parentElement.children[1].innerHTML
 
       // get current value
       let currentSelectVal = this.parentElement.children[4].value
-      currentSelectVal = parseInt(currentSelectVal)
-      console.log(typeof(currentSelectVal))
-      console.log(currentSelectVal+14)
-      
+      currentSelectVal = parseInt(currentSelectVal)      
 
-      // get current name
-      let currentName = this.parentElement.children[1].innerHTML
-      
       // get current price
       let currentPrice = this.parentElement.children[3].value
       currentPrice = parseInt(currentPrice)
@@ -92,6 +89,7 @@ function addListnerToBtn(){
       // reset button value
       this.parentElement.children[4].value  = 0
 
+      console.table(localStorage)
     })
   })
 }
