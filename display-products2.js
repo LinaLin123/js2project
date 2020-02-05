@@ -27,7 +27,7 @@ function showProducts( products ){
       "<h2 id='" + prodId + "name'>" + name + "</h2>" + 
       "<p>" + description + "</p>" +
       "<p>" + price + "kr</p>"+
-        "<select id='" + prodId + "select'>" + 
+        "<select id='" + prodId + "select' class='custom-select'>" + 
         "<option value='0'>Välj antal</option>" +
         "<option value='1'>1</option>" +
         "<option value='2'>2</option>" +

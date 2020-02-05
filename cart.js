@@ -21,45 +21,44 @@ fetch( 'products.json' )
 
 function getNames (names){
 
-    emptyCart() // either writes empty cart or table heading
+    ifEmptyCart() // either writes empty cart or table heading
 
     for(let i = 0; i < localStorage.length; i++){
     let name = localStorage.key( i )
-    console.log("Name: " + name)
 
-    let amount = localStorage.getItem( localStorage.key( i ) )
-    amount = parseInt(amount)
-    console.log("Tickets: " + amount)
+    let tickets = localStorage.getItem( localStorage.key( i ) )
+    tickets = parseInt(tickets)
     
     let price = names.products[i].price
-    console.log("Price: " + price)
 
-    let sum = price * amount
+    let sum = price * tickets
 
     // hämtar värdet
     localStorage.getItem( name )
     // console.log("Name: " + name + " Tickets: " + localStorage.getItem( name ))
 
-    dispCart.innerHTML += 
-    "<tr>"+
-        "<td>"+name+"</td>"+
-        "<td><button class='minusbtn btn btn-primary'>-</button>"+amount+"<button class='plusbtn btn btn-primary'>+</button></td>"+
-        "<td>"+price+"</td>"+
-        "<td>"+sum+"</td>"+
+    dispCart.innerHTML +=
+    "<tr class='table-row'>" +
+      "<td>" + name + "</td>" +
+      "<td><button class='minusbtn btn btn-primary btn-sm'>-</button>" +
+      "<input type='number class='inputAmount' value='" + tickets + "'></input>" +
+      "<button class='plusbtn btn btn-primary btn-sm'>+</button></td>" +
+      "<td>" + price + "</td>" +
+      "<td>" + sum + "</td>" +
     "</tr>" 
   }
 }
 
-function emptyCart(){
+function ifEmptyCart(){
   if(localStorage.length > 0 ){
     document.getElementById("emptyCart").innerHTML = ""
     dispCart.innerHTML += 
-    "<tr>" +
+    "<thead class='thead'><tr>" +
         "<th>Name</th>"+
-        "<th>Amount</th>"+
+        "<th>Tickets</th>"+
          "<th>Price</th>"+
          "<th>Sum</th>"
-    "</tr>"
+    "</tr></thead>"
   } else {
     document.getElementById("emptyCart").innerHTML = "Your cart is empty!"
   }
