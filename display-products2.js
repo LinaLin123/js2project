@@ -35,7 +35,7 @@ function showProducts( products ){
         "<option value='4'>4</option>" +
         "<option value='5'>5</option>" +
       "</select><br><br>" +
-      "<button type='submit' class='btn' id='" + prodId + "btn'>Add to basket</button>" +
+      "<button type='submit' class='btn btn-primary' id='" + prodId + "btn'>Add to basket</button>" +
     "</div>"
 
   }

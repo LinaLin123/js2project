@@ -43,7 +43,7 @@ function getNames (names){
     dispCart.innerHTML += 
     "<tr>"+
         "<td>"+name+"</td>"+
-        "<td><button class='minusbtn'>-</button>"+amount+"<button class='plusbtn'>+</button></td>"+
+        "<td><button class='minusbtn btn btn-primary'>-</button>"+amount+"<button class='plusbtn btn btn-primary'>+</button></td>"+
         "<td>"+price+"</td>"+
         "<td>"+sum+"</td>"+
     "</tr>" 
