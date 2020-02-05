@@ -36,22 +36,26 @@ function getNames (names){
 
     dispCart.innerHTML +=
     "<tr class='table-row'>" +
+      "<td><button class='btn btn-warning btn-sm'>x</button></td>" +
       "<td>" + name + "</td>" +
-      "<td><button class='change-btn minusbtn btn btn-primary btn-sm'>-</button>" +
-      "<input type='number class='change-btn inputAmount' value='" + tickets + "'></input>" +
-      "<button class='plusbtn btn btn-primary btn-sm'>+</button></td>" +
+      "<td><button id='"+name+"Btn+' class='minus btn btn-primary btn-sm'>-</button>" +
+      "<input type='number' id='"+name+"Input'  class='inputAmount' value='" + tickets + "'></input>" +
+      "<button id='"+name+"Btn-'  class='plus btn btn-primary btn-sm'>+</button></td>" +
       "<td>" + price + "</td>" +
       "<td>" + sum + "</td>" +
     "</tr>" 
+    console.log(parseInt(localStorage.getItem(name)))
   }
   dispCart.innerHTML +=
-  "<thead><tr class='table-row thead'>" +
+  "<thead><tr class='table-row thead-dark'>" +
+    "<th><button id='orderBtn' class='btn btn-success'>Place order</button></th>" +
     "<th></th>" +
     "<th></th>" +
     "<th>Total sum: </th>" +
     "<th>" + totalSum + "</th>" +
   "</tr></thead>"
-  addOrRemoveTickets()
+  inputChange()
+  removeTicket()
 }
 
 function ifEmptyCart(){
@@ -59,7 +63,8 @@ function ifEmptyCart(){
     document.getElementById("emptyCart").innerHTML = ""
     dispCart.innerHTML += 
     "<thead class='thead thead-dark'><tr>" +
-        "<th>Name</th>"+
+        "<th><button class='btn btn-danger btn-sm'>Clear cart</button></th>"+
+        "<th>Destination</th>"+
         "<th>Tickets</th>"+
          "<th>Price per ticket</th>"+
          "<th>Sum</th>"
@@ -69,13 +74,22 @@ function ifEmptyCart(){
   }
 }
 
-function addOrRemoveTickets(){
-    let changeBtns = document.querySelectorAll("change-btn ")
-    console.log(changeBtns)
-  
-    changeBtns.forEach( btn => {
-      btn.addEventListener('click',function(){ 
-        console.log(this)
-      })
+
+function inputChange(){
+  let inputs = document.querySelectorAll("input")
+  inputs.forEach( input => {
+    input.addEventListener('change',function(e){ 
+      console.log(this)
     })
+  })
+}
+
+function removeTicket(){
+  let removeBtn = document.querySelectorAll("button")
+  removeBtn.forEach( input => {
+    
+    input.addEventListener('click',function(e){ 
+      console.log(this)
+    })
+  })
 }

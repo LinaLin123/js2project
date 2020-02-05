@@ -40,7 +40,6 @@ function showProducts( products ){
         "<button type='submit' class='btn btn-primary' id='" + prodId + "btn'>Add to basket</button>" +
       "</div>" +
     "</div>"
-
   }
   addListnerToBtn()
 }
