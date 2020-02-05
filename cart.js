@@ -50,12 +50,15 @@ function getProdsToCart (products){
   }
   dispCart.innerHTML +=
   "<thead><tr class='table-row thead-dark'>" +
-    "<th><button id='orderBtn' class='btn btn-success'>Place order</button></th>" +
+    "<th></th>" +
     "<th></th>" +
     "<th></th>" +
     "<th>Total sum: </th>" +
-    "<th>" + totalSum + "</th>" +
-  "</tr></thead>"
+    "<th>" + totalSum + "</th>" + 
+  "</tr></thead>" + "<tr>" + "<td><label for='name'>Name:<br></label><input type='input'></td>"
+    + "<td><label for='name'>Email:<br></label><input type='input'></td>"
+    +"<td></td>" +"<td></td>" + "<td><button id='orderBtn' class='btn btn-success'>Place order</button></td>"
+  + "</tr>"
   inputChange()
   getBtns()
 }
