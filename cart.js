@@ -37,8 +37,8 @@ function getNames (names){
     dispCart.innerHTML +=
     "<tr class='table-row'>" +
       "<td>" + name + "</td>" +
-      "<td><button class='minusbtn btn btn-primary btn-sm'>-</button>" +
-      "<input type='number class='inputAmount' value='" + tickets + "'></input>" +
+      "<td><button class='change-btn minusbtn btn btn-primary btn-sm'>-</button>" +
+      "<input type='number class='change-btn inputAmount' value='" + tickets + "'></input>" +
       "<button class='plusbtn btn btn-primary btn-sm'>+</button></td>" +
       "<td>" + price + "</td>" +
       "<td>" + sum + "</td>" +
@@ -51,6 +51,7 @@ function getNames (names){
     "<th>Total sum: </th>" +
     "<th>" + totalSum + "</th>" +
   "</tr></thead>"
+  addOrRemoveTickets()
 }
 
 function ifEmptyCart(){
@@ -66,4 +67,15 @@ function ifEmptyCart(){
   } else {
     document.getElementById("emptyCart").innerHTML = "Your cart is empty!"
   }
+}
+
+function addOrRemoveTickets(){
+    let changeBtns = document.querySelectorAll("change-btn ")
+    console.log(changeBtns)
+  
+    changeBtns.forEach( btn => {
+      btn.addEventListener('click',function(){ 
+        console.log(this)
+      })
+    })
 }
