@@ -6,6 +6,13 @@ let dispCart = document.getElementById("dispCart")
 let cart = JSON.parse(localStorage.getItem('Name')) 
 console.table( localStorage )
 
+//Visa alla nycklar
+// for (let i = 0; i < localStorage.length; i++) {
+//   console.log("Key: " + localStorage.key(i));
+//   }
+
+// https://github.com/mahmudalhakim/JavaScript_2_FEND19/blob/master/Lektion_06/localstorage/localstorage-demo.html
+// https://studentportal.nackademin.se/pluginfile.php/171567/mod_resource/content/0/JavaScript-2-Lektion-06.pdf
 
 fetch( 'products.json' )
 .then( names => names.json() )
@@ -41,7 +48,7 @@ function getNames (names){
     "<tr>"+
         "<td>"+name+"</td>"+
         "<td>"+amount+"</td>"+
-        "<td>"+price+"</td>"+
+        "<td><button class='minusbtn'>-</button>"+price+"<button class='plusbtn'>+</button></td>"+
         "<td>"+sum+"</td>"+
     "</tr>" 
   }
