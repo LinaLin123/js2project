@@ -20,17 +20,13 @@ fetch( 'products.json' )
 .then( names => getNames( names ) )
 
 function getNames (names){
+  ifEmptyCart() // either writes empty cart or table heading
 
-    ifEmptyCart() // either writes empty cart or table heading
-
-    for(let i = 0; i < localStorage.length; i++){
+  for( let i = 0; i < localStorage.length; i++ ){
     let name = localStorage.key( i )
-
     let tickets = localStorage.getItem( localStorage.key( i ) )
     tickets = parseInt(tickets)
-    
     let price = names.products[i].price
-
     let sum = price * tickets
 
     // hämtar värdet
@@ -47,6 +43,13 @@ function getNames (names){
       "<td>" + sum + "</td>" +
     "</tr>" 
   }
+  dispCart.innerHTML +=
+  "<tr class='table-row tfoot'>" +
+    "<td></td>" +
+    "<td></td>" +
+    "<td>Total sum:</td>" +
+    "<td></td>" +
+  "</tr>"
 }
 
 function ifEmptyCart(){

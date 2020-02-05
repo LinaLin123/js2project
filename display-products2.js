@@ -26,9 +26,9 @@ function showProducts( products ){
     "<div id='" + prodId + "' class='prod card'> "+
       "<img src='" + imageAddress + "' class='prodImg card-img-top'>" +
       "<div class='card-body'>" +
-        "<h2 id='" + prodId + "name' class='card-title'>" + name + "</h2>" + 
+        "<h3 id='" + prodId + "name' class='card-title'>" + name + "</h3>" + 
         "<p class='card-text'>" + description + "</p>" +
-        "<p class='card-text'>" + price + "kr</p>"+
+        "<h5 class='card-subtitle mb-2 text-muted'>" + price + "kr</h5>"+
         "<select id='" + prodId + "select' class='custom-select'>" + 
           "<option value='0'>Välj antal</option>" +
           "<option value='1'>1</option>" +
