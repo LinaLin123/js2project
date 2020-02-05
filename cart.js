@@ -16,10 +16,10 @@ let cart = JSON.parse(localStorage.getItem('Name'))
 // https://studentportal.nackademin.se/pluginfile.php/171567/mod_resource/content/0/JavaScript-2-Lektion-06.pdf
 
 fetch( 'products.json' )
-.then( names => names.json() )
-.then( products => getNames( products ) )
+.then( products => products.json() )
+.then( products => getProdsToCart( products ) )
 
-function getNames (products){
+function getProdsToCart (products){
   ifEmptyCart() // either writes empty cart or table heading
   let totalSum = 0;
 
@@ -39,11 +39,11 @@ function getNames (products){
 
     dispCart.innerHTML +=
     "<tr class='table-row'>" +
-      "<td><button id ='" + name + "deleteBtn' class='btn btn-warning btn-sm'>x</button></td>" +
+      "<td><button id ='" + id + "deleteBtn' class='btn btn-warning btn-sm'>x</button></td>" +
       "<td>" + name + "</td>" +
-      "<td><button id='"+name+"Btn+' class='minus btn btn-primary btn-sm'>-</button>" +
-      "<input type='number' id='"+name+"Input' class='inputAmount' value='" + tickets + "'></input>" +
-      "<button id='"+name+"Btn-'  class='plus btn btn-primary btn-sm'>+</button></td>" +
+      "<td><button id='" + id + "BtnMinus' class='minus btn btn-primary btn-sm'>-</button>" +
+      "<input type='number' id='"+id+"Input' class='inputAmount' value='" + tickets + "'></input>" +
+      "<button id='" + id + "BtnPlus'  class='plus btn btn-primary btn-sm'>+</button></td>" +
       "<td>" + price + "</td>" +
       "<td>" + sum + "</td>" +
     "</tr>" 
