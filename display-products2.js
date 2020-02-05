@@ -23,19 +23,22 @@ function showProducts( products ){
 
     // create div for each product with product info, select and submitbtn
     dispDiv.innerHTML += 
-    "<div id='" + prodId + "' class='prod'><img src='" + imageAddress + "' class='prodImg'>"  +
-      "<h2 id='" + prodId + "name'>" + name + "</h2>" + 
-      "<p>" + description + "</p>" +
-      "<p>" + price + "kr</p>"+
+    "<div id='" + prodId + "' class='prod card'> "+
+      "<img src='" + imageAddress + "' class='prodImg card-img-top'>" +
+      "<div class='card-body'>" +
+        "<h2 id='" + prodId + "name' class='card-title'>" + name + "</h2>" + 
+        "<p class='card-text'>" + description + "</p>" +
+        "<p class='card-text'>" + price + "kr</p>"+
         "<select id='" + prodId + "select' class='custom-select'>" + 
-        "<option value='0'>Välj antal</option>" +
-        "<option value='1'>1</option>" +
-        "<option value='2'>2</option>" +
-        "<option value='3'>3</option>" +
-        "<option value='4'>4</option>" +
-        "<option value='5'>5</option>" +
-      "</select><br><br>" +
-      "<button type='submit' class='btn btn-primary' id='" + prodId + "btn'>Add to basket</button>" +
+          "<option value='0'>Välj antal</option>" +
+          "<option value='1'>1</option>" +
+          "<option value='2'>2</option>" +
+          "<option value='3'>3</option>" +
+          "<option value='4'>4</option>" +
+          "<option value='5'>5</option>" +
+        "</select><br><br>" +
+        "<button type='submit' class='btn btn-primary' id='" + prodId + "btn'>Add to basket</button>" +
+      "</div>" +
     "</div>"
 
   }
@@ -48,8 +51,9 @@ function addListnerToBtn(){
 
   allBtns.forEach( btn => {
     btn.addEventListener('click',function(){ 
-      let eName = this.parentElement.children[1].innerHTML
-      let eSelectVal = this.parentElement.children[4].value
+      let eName = this.parentElement.children[0].innerHTML
+      let eSelectVal = this.parentElement.children[3].value
+      console.log(eSelectVal)
       eSelectVal = parseInt(eSelectVal)
 
       // either set an amount for the first time or add together with previous amount
@@ -65,7 +69,7 @@ function addListnerToBtn(){
       }
       
       // reset button value
-      this.parentElement.children[4].value  = 0
+      this.parentElement.children[3].value  = 0
     })
   })
 }
