@@ -4,6 +4,11 @@
   justify-content:center;
 }
 
+.prod{
+	display: flex;
+	margin:1em;
+}
+
 h1, h2 {
 	text-align: center;
 }
