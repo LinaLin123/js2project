@@ -3,7 +3,7 @@
   {
   "name": "Maldives",
   "price": 2000,
-  "description": "info",
+  "description": "Travel to  to the Maldives",
   "image": "images/maldiverna.jpg",
   "amount": 0
  },
@@ -11,7 +11,7 @@
  {
   "name": "Bali",
   "price": 1000,
-  "description": "info",
+  "description": "Travel to  to Bali",
   "image": "images/bali.jpg",
   "amount": 0
  },
@@ -19,7 +19,7 @@
  {
   "name": "Grand Canyon",
   "price": 2500,
-  "description": "info",
+  "description": "Travel to  to the Grand Canyon",
   "image": "images/grandcanyon.jpg",
   "amount": 0
  },
@@ -28,7 +28,7 @@
  {
   "name": "Isfahan",
   "price": 2600,
-  "description": "info",
+  "description": "Travel to  to Isfahan",
   "image": "images/isfahan.jpg",
   "amount": 0
  },
@@ -36,7 +36,7 @@
  {
   "name": "Japan",
   "price": 1500,
-  "description": "info",
+  "description": "Travel to  to Japan",
   "image": "images/japan.jpg",
   "amount": 0
  },
@@ -44,7 +44,7 @@
  {
   "name": "Kenya",
   "price": 2050,
-  "description": "info",
+  "description": "Travel to  to Kenya",
   "image": "images/kenya.jpg",
   "amount": 0
  },
@@ -52,7 +52,7 @@
  {
   "name": "Norway",
   "price": 1000,
-  "description": "info",
+  "description": "Travel to  to Norway",
   "image": "images/norway.jpeg",
   "amount": 0
  },
@@ -60,7 +60,7 @@
  {
   "name": "Peru",
   "price": 2500,
-  "description": "info",
+  "description": "Travel to  to Peru",
   "image": "images/peru.jpg",
   "amount": 0
  },
@@ -68,7 +68,7 @@
  {
   "name": "Sweden",
   "price": 3500,
-  "description": "info",
+  "description": "Travel to  to Sweden",
   "image": "images/sweden.jpeg",
   "amount": 0
  },
@@ -76,7 +76,7 @@
  {
   "name": "Thailand",
   "price": 1600,
-  "description": "info",
+  "description": "Travel to  to Thailand",
   "image": "images/thailand.jpg",
   "amount": 0
  }

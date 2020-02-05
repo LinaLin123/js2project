@@ -21,6 +21,7 @@ fetch( 'products.json' )
 
 function getNames (names){
   ifEmptyCart() // either writes empty cart or table heading
+  let totalSum = 0;
 
   for( let i = 0; i < localStorage.length; i++ ){
     let name = localStorage.key( i )
@@ -28,7 +29,7 @@ function getNames (names){
     tickets = parseInt(tickets)
     let price = names.products[i].price
     let sum = price * tickets
-
+    totalSum += sum
     // hämtar värdet
     localStorage.getItem( name )
     // console.log("Name: " + name + " Tickets: " + localStorage.getItem( name ))
@@ -44,22 +45,22 @@ function getNames (names){
     "</tr>" 
   }
   dispCart.innerHTML +=
-  "<tr class='table-row tfoot'>" +
-    "<td></td>" +
-    "<td></td>" +
-    "<td>Total sum:</td>" +
-    "<td></td>" +
-  "</tr>"
+  "<thead><tr class='table-row thead'>" +
+    "<th></th>" +
+    "<th></th>" +
+    "<th>Total sum: </th>" +
+    "<th>" + totalSum + "</th>" +
+  "</tr></thead>"
 }
 
 function ifEmptyCart(){
   if(localStorage.length > 0 ){
     document.getElementById("emptyCart").innerHTML = ""
     dispCart.innerHTML += 
-    "<thead class='thead'><tr>" +
+    "<thead class='thead thead-dark'><tr>" +
         "<th>Name</th>"+
         "<th>Tickets</th>"+
-         "<th>Price</th>"+
+         "<th>Price per ticket</th>"+
          "<th>Sum</th>"
     "</tr></thead>"
   } else {
