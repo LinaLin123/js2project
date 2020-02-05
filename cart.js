@@ -55,7 +55,7 @@ function getNames (names){
     "<th>" + totalSum + "</th>" +
   "</tr></thead>"
   inputChange()
-  removeTicket()
+  getBtns()
 }
 
 function ifEmptyCart(){
@@ -84,7 +84,7 @@ function inputChange(){
   })
 }
 
-function removeTicket(){
+function getBtns(){
   let removeBtn = document.querySelectorAll("button")
   removeBtn.forEach( input => {
     
