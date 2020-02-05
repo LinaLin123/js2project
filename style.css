@@ -1,4 +1,9 @@
-body, p {
+#dispProd {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* body, p {
 	font-family: 'Open Sans', sans-serif;
 }
 
@@ -64,4 +69,4 @@ th {
 }
 td, th {
   padding: 15px;
-}
+} */
