@@ -66,8 +66,10 @@ function addListnerToBtn(){
       
       // reset button value
       this.parentElement.children[4].value  = 0
-      console.table( localStorage )
-
     })
   })
 }
+
+window.addEventListener('storage', function(e) {  
+  console.log('Woohoo, someone changed my localstorage va another tab/window!');
+});

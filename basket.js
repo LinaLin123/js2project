@@ -1,10 +1,11 @@
 // connect to HTML-document
 let dispCart = document.getElementById("dispCart")
+let test = document.getElementById("test")
 // display cart
 
 // Hämta data från localStorage
 let cart = JSON.parse(localStorage.getItem('Name')) 
-console.table( localStorage )
+// console.table( localStorage )
 
 //Visa alla nycklar
 // for (let i = 0; i < localStorage.length; i++) {
@@ -19,13 +20,8 @@ fetch( 'products.json' )
 .then( names => getNames( names ) )
 
 function getNames (names){
-    dispCart.innerHTML += 
-    "<tr>"+
-        "<th>Name</th>"+
-        "<th>Amount</th>"+
-         "<th>Price</th>"+
-         "<th>Sum</th>"
-    "</tr>"
+
+    emptyCart() // either writes empty cart or table heading
 
     for(let i = 0; i < localStorage.length; i++){
     let name = localStorage.key( i )
@@ -52,5 +48,19 @@ function getNames (names){
         "<td>"+sum+"</td>"+
     "</tr>" 
   }
+}
 
+function emptyCart(){
+  if(localStorage.length > 0 ){
+    document.getElementById("emptyCart").innerHTML = ""
+    dispCart.innerHTML += 
+    "<tr>" +
+        "<th>Name</th>"+
+        "<th>Amount</th>"+
+         "<th>Price</th>"+
+         "<th>Sum</th>"
+    "</tr>"
+  } else {
+    document.getElementById("emptyCart").innerHTML = "Your cart is empty!"
+  }
 }
