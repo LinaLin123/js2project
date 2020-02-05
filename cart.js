@@ -17,34 +17,36 @@ let cart = JSON.parse(localStorage.getItem('Name'))
 
 fetch( 'products.json' )
 .then( names => names.json() )
-.then( names => getNames( names ) )
+.then( products => getNames( products ) )
 
-function getNames (names){
+function getNames (products){
   ifEmptyCart() // either writes empty cart or table heading
   let totalSum = 0;
 
   for( let i = 0; i < localStorage.length; i++ ){
-    let name = localStorage.key( i )
+    let id = localStorage.key( i )
+    let name = products[id].name
     let tickets = localStorage.getItem( localStorage.key( i ) )
     tickets = parseInt(tickets)
-    let price = names.products[i].price
-    let sum = price * tickets
+    console.log()
+    let price = products[id].price
+    let sum = tickets * price
     totalSum += sum
     // hämtar värdet
-    localStorage.getItem( name )
+    
+    console.log(localStorage.getItem( id ))
     // console.log("Name: " + name + " Tickets: " + localStorage.getItem( name ))
 
     dispCart.innerHTML +=
     "<tr class='table-row'>" +
-      "<td><button class='btn btn-warning btn-sm'>x</button></td>" +
+      "<td><button id ='" + name + "deleteBtn' class='btn btn-warning btn-sm'>x</button></td>" +
       "<td>" + name + "</td>" +
       "<td><button id='"+name+"Btn+' class='minus btn btn-primary btn-sm'>-</button>" +
-      "<input type='number' id='"+name+"Input'  class='inputAmount' value='" + tickets + "'></input>" +
+      "<input type='number' id='"+name+"Input' class='inputAmount' value='" + tickets + "'></input>" +
       "<button id='"+name+"Btn-'  class='plus btn btn-primary btn-sm'>+</button></td>" +
       "<td>" + price + "</td>" +
       "<td>" + sum + "</td>" +
     "</tr>" 
-    console.log(parseInt(localStorage.getItem(name)))
   }
   dispCart.innerHTML +=
   "<thead><tr class='table-row thead-dark'>" +
@@ -63,7 +65,7 @@ function ifEmptyCart(){
     document.getElementById("emptyCart").innerHTML = ""
     dispCart.innerHTML += 
     "<thead class='thead thead-dark'><tr>" +
-        "<th><button class='btn btn-danger btn-sm'>Clear cart</button></th>"+
+        "<th><button id='clearCartBtn' class='btn btn-danger btn-sm deletAllBtn'>Clear cart</button></th>"+
         "<th>Destination</th>"+
         "<th>Tickets</th>"+
          "<th>Price per ticket</th>"+
@@ -87,9 +89,13 @@ function inputChange(){
 function getBtns(){
   let removeBtn = document.querySelectorAll("button")
   removeBtn.forEach( input => {
-    
     input.addEventListener('click',function(e){ 
-      console.log(this)
+      if(this.id == "clearCartBtn"){
+        alert("Are you sure you would like to delete all items in your cart?")
+        console.log("Clearing the cart!")
+      } else {
+        console.log(this)
+      }
     })
   })
 }

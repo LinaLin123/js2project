@@ -1,92 +1,83 @@
-{"products":[{
-  "id": "id0",
+{ 
+  "id0": 
+  {
   "name": "Maldives",
   "price": 2000,
-  "description": "info",
+  "description": "Travel to  to the Maldives",
   "image": "images/maldiverna.jpg",
-  "amount": 3
-
+  "amount": 0
  },
-
+"id1":
  {
-  "id": "id1",
   "name": "Bali",
   "price": 1000,
-  "description": "info",
+  "description": "Travel to  to Bali",
   "image": "images/bali.jpg",
-  "amount": 4
+  "amount": 0
  },
-
+ "id2": 
  {
-  "id": "id2",
   "name": "Grand Canyon",
   "price": 2500,
-  "description": "info",
+  "description": "Travel to  to the Grand Canyon",
   "image": "images/grandcanyon.jpg",
-  "amount": 5
+  "amount": 0
  },
 
+ "id3": 
  {
-  "id": "id3",
   "name": "Isfahan",
   "price": 2600,
-  "description": "info",
+  "description": "Travel to  to Isfahan",
   "image": "images/isfahan.jpg",
   "amount": 0
  },
-
+ "id4":
  {
-  "id": "id4",
   "name": "Japan",
   "price": 1500,
-  "description": "info",
+  "description": "Travel to  to Japan",
   "image": "images/japan.jpg",
   "amount": 0
  },
-
+"id5":
  {
-  "id": "id5",
   "name": "Kenya",
   "price": 2050,
-  "description": "info",
+  "description": "Travel to  to Kenya",
   "image": "images/kenya.jpg",
   "amount": 0
  },
-
+"id6":
  {
-  "id": "id6",
   "name": "Norway",
   "price": 1000,
-  "description": "info",
+  "description": "Travel to  to Norway",
   "image": "images/norway.jpeg",
   "amount": 0
  },
-
+"id7":
  {
-  "id": "id7",
   "name": "Peru",
   "price": 2500,
-  "description": "info",
+  "description": "Travel to  to Peru",
   "image": "images/peru.jpg",
   "amount": 0
  },
-
+"id8":
  {
-  "id": "id8",
   "name": "Sweden",
   "price": 3500,
-  "description": "info",
+  "description": "Travel to  to Sweden",
   "image": "images/sweden.jpeg",
   "amount": 0
  },
-
+"id9":
  {
-  "id": "id9",
   "name": "Thailand",
   "price": 1600,
-  "description": "info",
+  "description": "Travel to  to Thailand",
   "image": "images/thailand.jpg",
   "amount": 0
  }
- 
-]}
+}
