@@ -2,6 +2,11 @@
 let dispCart = document.getElementById("dispCart")
 // display cart
 
+// Hämta data från localStorage
+let cart = JSON.parse(localStorage.getItem('Name')) 
+console.table( localStorage )
+
+
 fetch( 'products.json' )
 .then( names => names.json() )
 .then( names => getNames( names ) )
