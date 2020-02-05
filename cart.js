@@ -55,10 +55,10 @@ function getProdsToCart (products){
     "<th></th>" +
     "<th>Total sum: </th>" +
     "<th>" + totalSum + "</th>" + 
-  "</tr></thead>" + "<tr>" + "<td><label for='name'>Name:<br></label><input type='input'></td>"
-    + "<td><label for='name'>Email:<br></label><input type='input'></td>"
-    +"<td></td>" +"<td></td>" + "<td><button id='orderBtn' class='btn btn-success'>Place order</button></td>"
-  + "</tr>"
+  "</tr></thead>" + 
+  "<tr><td>Name: <input type='text' placeholder='Name...'></input></td>"
+    + "<td>Email: <input type='text' placeholder='Email...'></input></td>"
+    +"<td></td><td></td><td><button id='orderBtn' class='btn btn-success'>Place order</button></td></tr>"
   inputChange()
   getBtns()
 }
