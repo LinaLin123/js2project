@@ -34,7 +34,7 @@ function getProdsToCart (products){
       "<td><button id ='" + id + "deleteBtn' class='btn btn-warning btn-sm'>x</button></td>" +
       "<td>" + name + "</td>" +
       "<td><button id='" + id + "MinusBtn' class='minus btn btn-info btn-sm'>-</button>" +
-      "<input type='number' id='"+id+"Input' class='inputAmount' value='" + tickets + "'></input>" +
+      "<input type='text' id='"+id+"Input' class='inputAmount' value='" + tickets + "'></input>" +
       "<button id='" + id + "PlusBtn'  class='plus btn btn-info btn-sm'>+</button></td>" +
       "<td>" + price + "</td>" +
       "<td>" + sum + "</td>" +
