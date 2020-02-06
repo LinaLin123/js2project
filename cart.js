@@ -106,13 +106,11 @@ function getBtns(){
       } // remove one item
       else if ( eId == eParentId+"MinusBtn" ){
         if( parseInt(this.nextElementSibling.value) > 0 ){
-          console.log("removing one ticket")
           localStorage.setItem(eParentId,(parseInt(this.nextElementSibling.value)-1))
           getProducts()
         }
       } // add item
       else if ( eId == eParentId+"PlusBtn" ){
-        console.log("adding one ticket")
         localStorage.setItem(eParentId,(parseInt(this.previousSibling.value)+1))
         getProducts()
       } else {
