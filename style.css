@@ -12,6 +12,10 @@
 h1, h2 {
 	text-align: center;
 }
+
+.hide {
+  display: none;
+}
 /* body, p {
 	font-family: 'Open Sans', sans-serif;
 }
