@@ -2,6 +2,8 @@
 // Ge feedback till user att något har lagts till i korgen
 // Uppdatera med en liten korg bredvid "Cart" i menyn, aktuel summa?
 
+// TO DO:
+// - backticks istället för konkatination
 
 // connect to HTML-document
 let body = document.querySelector("body")

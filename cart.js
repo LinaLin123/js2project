@@ -5,8 +5,12 @@
 // - aktiver på key-up istället för bara på enter slag
 // - kolla om vi behöver skilja input of numer från input av text
 
-// TO DO: skicka informaion till order confirmation när kund trycker på order
-// Bekräftelse på order confirmation, trycka på knapp? - clear cart?
+// TO DO: 
+// - skicka informaion till order confirmation när kund trycker på order
+// - Bekräftelse på order confirmation, trycka på knapp? - clear cart?
+
+// TO DO:
+// - backticks istället för konkatination
 
 // connect to HTML-document
 let dispCart = document.getElementById("dispCart")
