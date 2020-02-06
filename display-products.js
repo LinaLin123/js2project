@@ -1,3 +1,8 @@
+// TODO:
+// Ge feedback till user att något har lagts till i korgen
+// Uppdatera med en liten korg bredvid "Cart" i menyn, aktuel summa?
+
+
 // connect to HTML-document
 let body = document.querySelector("body")
 let dispDiv = document.getElementById("dispProd")

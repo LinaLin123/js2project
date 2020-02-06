@@ -1,3 +1,13 @@
+
+// TO DO: 
+// - check that input is a (positive) number
+// - med begränsingar på hur många man kan skriva in
+// - aktiver på key-up istället för bara på enter slag
+// - kolla om vi behöver skilja input of numer från input av text
+
+// TO DO: skicka informaion till order confirmation när kund trycker på order
+// Bekräftelse på order confirmation, trycka på knapp? - clear cart?
+
 // connect to HTML-document
 let dispCart = document.getElementById("dispCart")
 
@@ -34,7 +44,7 @@ function getProdsToCart (products){
       "<td><button id ='" + id + "deleteBtn' class='btn btn-warning btn-sm'>x</button></td>" +
       "<td>" + name + "</td>" +
       "<td><button id='" + id + "MinusBtn' class='minus btn btn-info btn-sm'>-</button>" +
-      "<input type='text' id='"+id+"Input' class='inputAmount' value='" + tickets + "'></input>" +
+      "<input type='number' id='"+id+"Input' class='inputAmount' value='" + tickets + "'></input>" +
       "<button id='" + id + "PlusBtn'  class='plus btn btn-info btn-sm'>+</button></td>" +
       "<td>" + price + "</td>" +
       "<td>" + sum + "</td>" +
@@ -81,8 +91,9 @@ function inputChange(){
   let inputs = document.querySelectorAll("input")
   inputs.forEach( input => {
     input.addEventListener('change',function(e){ 
-      console.log(this)
-      console.log(this.id)
+      // changes localstorage value to input value
+      localStorage.setItem(this.parentElement.parentElement.id,this.value)
+      getProducts()
     })
   })
 }
