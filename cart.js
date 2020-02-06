@@ -19,6 +19,9 @@ function getProdsToCart (products){
   let totalSum = 0
 
   for( let i = 0; i < localStorage.length; i++ ){
+    if(localStorage.key(i)[0] != "i"){ // remove data that isn't the correct key
+      localStorage.removeItem(localStorage.key(i))
+    }
     let id = localStorage.key(i)
     let name = products[id].name
     let tickets = parseInt( localStorage.getItem( localStorage.key(i) ) )
