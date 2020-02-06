@@ -16,9 +16,6 @@
 // connect to HTML-document
 let dispCart = document.getElementById("dispCart")
 
-// https://github.com/mahmudalhakim/JavaScript_2_FEND19/blob/master/Lektion_06/localstorage/localstorage-demo.html
-// https://studentportal.nackademin.se/pluginfile.php/171567/mod_resource/content/0/JavaScript-2-Lektion-06.pdf
-
 // get data from .json
 function getProducts() {
   fetch('products.json')

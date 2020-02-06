@@ -47,6 +47,19 @@ h1, h2, h3, footer {
   border-radius: 50%;
 }
 
-.confirmationDiv {
+#confirmationDiv {
+  display: flex;
+  flex-direction: column;
   text-align: center;
+
+}
+
+@media only screen and (max-width: 414px) {
+  #dispProd {
+    margin-left: 0em;
+  }
+
+  .inputAmount {
+  margin: 0;
+}
 }
