@@ -11,12 +11,23 @@
 </head>
 <body>
 
-  <h1>Great, lets travel!</h1>
+  <header  class="main-header">
+    <nav class="nav">
+      <a href="index.html" id="clearHomeLink" class="nav-link"><i class="fa fa-home"></i> Home</a>
+      <a href="cart.html" id="clearCartLink" class="nav-link"><i class="fa fa-shopping-cart"></i> Cart <span>(0)</span></a>
+    </nav>
+  </header>   
+
+  <h1>Great, let's travel!</h1>
   <h2>Order confirmation</h2>
 
   <table id="dispOrder" class="table">
   </table>  
 
+  <div id="confirmationDiv">
+    <h2>Craving another adventure?</h2>
+    <a href="index.html"><button id="closeConfirmationPage" class="btn btn-primary btn-lg">Start a new cart</button></a>
+  </div>
   <footer>
     <p><i class="fa fa-copyright"></i> Copyright 2020</p>
   </footer>
