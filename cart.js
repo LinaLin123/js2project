@@ -45,7 +45,7 @@ function getProdsToCart (products){
 
     dispCart.innerHTML +=
     "<tr id='" + id + "' class='table-row'>" +
-      "<td><button id ='" + id + "deleteBtn' class='btn btn-warning btn-sm'>x</button></td>" +
+      "<td><button id ='" + id + "deleteBtn' class='btn btn-warning btn-sm'><i class='fa fa-trash'></i></button></td>" +
       "<td>" + name + "</td>" +
       "<td><button id='" + id + "MinusBtn' class='minus btn btn-info btn-sm'>-</button>" +
       "<input type='number' id='"+id+"Input' class='inputAmount' value='" + tickets + "'></input>" +
