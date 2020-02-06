@@ -21,6 +21,7 @@ fetch( 'products.json' )
 .then( prods => showProducts( prods ) )
 
 function showProducts( products ){
+  updateCart()
   for(let i = 0; i < 10; i++){
     let imageAddress = products["id"+i].image
     let name = products["id"+i].name
@@ -45,7 +46,7 @@ function showProducts( products ){
           "<option value='5'>5</option>" +
         "</select><br><br>" +
         "<button type='submit' class='btn btn-primary' id='" + prodId + "btn'>Add to basket</button>" +
-      "</div>" +
+      "<span id='"+prodId+"span'></span></div>" +
     "</div>"
   }
   addListnerToBtn()
@@ -57,27 +58,33 @@ function addListnerToBtn(){
 
   allBtns.forEach( btn => {
     btn.addEventListener('click',function(){ 
-      let eName = this.parentElement.children[0].innerHTML
-      eName = this.parentElement.parentElement.id
-      console.log(this.parentElement.parentElement.id)
+      let eId = this.parentElement.children[0].innerHTML
+      eId = this.parentElement.parentElement.id
       let eSelectVal = this.parentElement.children[3].value
-      console.log(eSelectVal)
       eSelectVal = parseInt(eSelectVal)
+      let eSpan = eId + "span"
 
       // either set an amount for the first time or add together with previous amount
-      if( localStorage.getItem(eName) == null || parseInt(localStorage.getItem(eName)) == 0 ){
-        localStorage.setItem( eName, eSelectVal )
-        console.log("Set first amount of " + eName + " tickets to: " + localStorage.getItem(eName))
+      if( localStorage.getItem(eId) == null || parseInt(localStorage.getItem(eId)) == 0 ){
+        localStorage.setItem( eId, eSelectVal )
       } else {
-        let eTickets = localStorage.getItem(eName)
+        let eTickets = localStorage.getItem(eId)
         eTickets = parseInt(eTickets)
         let eNewTicketSum = eSelectVal + eTickets
-        localStorage.setItem( eName, eNewTicketSum )
-        console.log("Changed amount of " + eName + " tickets to: " + localStorage.getItem(eName) )
+        localStorage.setItem( eId, eNewTicketSum )
       }
-      
+      // feedback to user
+      if(eSelectVal === 1){
+        document.getElementById(eSpan).innerHTML = "Added 1 ticket to cart"
+        console.log("Added 1 ticket to cart")
+      } else if(eSelectVal === 0){
+        console.log("No tickets were added to cart")
+      } else {
+        console.log("Added " + eSelectVal + " tickets to cart" )
+      }
       // reset button value
       this.parentElement.children[3].value  = 0
+        updateCart()
     })
   })
 }
@@ -85,3 +92,13 @@ function addListnerToBtn(){
 window.addEventListener('storage', function(e) {  
   console.log('Woohoo, someone changed my localstorage va another tab/window!');
 });
+
+function updateCart(){
+  let sum = 0
+  if(localStorage.length > 0) {
+  for( let i = 0; i < localStorage.length; i++ ){
+    sum += parseInt(localStorage.getItem(localStorage.key(i)))
+  }
+}
+  document.getElementById("updateCart").innerHTML = " (" + sum + ")"
+}
