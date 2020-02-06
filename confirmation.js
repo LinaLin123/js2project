@@ -29,11 +29,11 @@ function getProducts(){
     }
     dispOrder.innerHTML +=
     "<thead><tr class='thead thead-dark'>" +
-      "<th>Sum</th>" +
+      "<th></th>" +
       "<th>Destination</th>" +
       "<th>Tickets</th>" +
       "<th>Price/ticket</th>" +
-      "<th></th></tr></thead>"
+      "<th>Sum</th></tr></thead>"
 
 dispOrder.innerHTML +=
     "<thead><tr class='thead thead-dark''>" +

@@ -25,11 +25,13 @@ function getProducts(){
   .then( products => getProdsToCart( products ) )
 }
 getProducts()
+updateCart()
 
 // display cart
 function getProdsToCart (products){
   dispCart.innerHTML = ""
   ifEmptyCart() // either writes empty cart or table heading
+  updateCart()
   let totalSum = 0
 
   for( let i = 0; i < localStorage.length; i++ ){
@@ -138,8 +140,12 @@ function getBtns(){
   })
 }
 
-function localStorageChange() {
+function updateCart(){
+  let sum = 0
+  if(localStorage.length > 0) {
   for( let i = 0; i < localStorage.length; i++ ){
-
+    sum += parseInt(localStorage.getItem(localStorage.key(i)))
   }
+}
+  document.getElementById("updateCart").innerHTML = " (" + sum + ")"
 }

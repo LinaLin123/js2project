@@ -38,7 +38,7 @@ function showProducts( products ){
         "<p class='card-text'>" + description + "</p>" +
         "<h5 class='card-subtitle mb-2 text-muted'>" + price + " sek</h5>"+
         "<select id='" + prodId + "select' class='custom-select'>" + 
-          "<option value='0'>Välj antal</option>" +
+          "<option value='0'>Number of tickets</option>" +
           "<option value='1'>1</option>" +
           "<option value='2'>2</option>" +
           "<option value='3'>3</option>" +
