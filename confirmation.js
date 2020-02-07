@@ -43,18 +43,10 @@ function getcartToOrderForm(products) {
     "<th></th>" +
     "<th>Total sum: </th>" +
     "<th>" + totalSum + "</th></tr></thead>"
+
+clearCart()
 }
 
 function clearCart(){
-  document.getElementById("clearHomeLink").addEventListener('click',function(){
     localStorage.clear()
-  })
-  document.getElementById("clearCartLink").addEventListener('click',function(){
-    localStorage.clear()
-  })
-  document.getElementById("closeConfirmationPage").addEventListener('click',function(){
-    localStorage.clear()
-  })
 }
-
-clearCart()
