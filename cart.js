@@ -1,12 +1,3 @@
-
-// TO DO: 
-// - check that input is a (positive) number
-// - aktiver på key-up istället för bara på enter slag
-// - kolla om vi behöver skilja input of numer från input av text
-
-// TO DO:
-// ändra alertsen
-
 // connect to HTML-document
 let dispCart = document.getElementById("dispCart")
 
@@ -60,9 +51,7 @@ function getProdsToCart(products) {
   if (localStorage.length > 0) {
     dispCart.innerHTML +=
       "<thead class='thead thead-dark'><tr><th>" +
-      // "<input type='text' placeholder='Name...'>" +
       "</th><th>" +
-      // "<input type='email' placeholder='Email...'>" +
       "</th><th></th><th></th>" +
       "<th><a href='confirmation.html'><button id='orderBtn' class='btn btn-success'>Place order</button></a></th></tr></thead>"
   }
@@ -91,8 +80,11 @@ function inputChange() {
   let inputs = document.querySelectorAll("input")
   inputs.forEach(input => {
     input.addEventListener('change', function (e) {
-      // changes localstorage value to input value
-      localStorage.setItem(this.parentElement.parentElement.id, this.value)
+      if( this.value >= 0 && this.value <=20 ){ // changes localstorage value to input value
+        localStorage.setItem(this.parentElement.parentElement.id, this.value)
+      } else {
+        alert("Enter a number between 1-20")
+      }
       getProducts()
     })
   })

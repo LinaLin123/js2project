@@ -1,6 +1,3 @@
-// TODO:
-// Ge feedback till user att något har lagts till i korgen
-
 // connect to HTML-document
 let body = document.querySelector("body")
 let dispDiv = document.getElementById("dispProd")
