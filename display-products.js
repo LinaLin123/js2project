@@ -22,6 +22,7 @@ fetch( 'products.json' )
 function showProducts( products ){
   updateCart()
   for(let i = 0; i < 10; i++){
+
     let imageAddress = products["id"+i].image
     let name = products["id"+i].name
     let description = products["id"+i].description
