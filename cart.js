@@ -4,12 +4,6 @@
 // - aktiver på key-up istället för bara på enter slag
 // - kolla om vi behöver skilja input of numer från input av text
 
-// TO DO: 
-// - BEHÖVER MAN CLEARA STORAGE REDAN I CART? Fråga Mahmood
-
-// TO DO:
-// - backticks istället för konkatinering
-
 // TO DO:
 // ändra alertsen
 

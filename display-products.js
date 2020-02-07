@@ -22,6 +22,7 @@ fetch( 'products.json' )
 function showProducts( products ){
   updateCart()
   for(let i = 0; i < 10; i++){
+
     let imageAddress = products["id"+i].image
     let name = products["id"+i].name
     let description = products["id"+i].description
@@ -87,10 +88,6 @@ function addListnerToBtn(){
     })
   })
 }
-
-window.addEventListener('storage', function(e) {  
-  console.log('Woohoo, someone changed my localstorage va another tab/window!');
-});
 
 function updateCart(){
   let sum = 0
