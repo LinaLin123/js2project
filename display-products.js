@@ -89,10 +89,6 @@ function addListnerToBtn(){
   })
 }
 
-window.addEventListener('storage', function(e) {  
-  console.log('Woohoo, someone changed my localstorage va another tab/window!');
-});
-
 function updateCart(){
   let sum = 0
   if(localStorage.length > 0) {
