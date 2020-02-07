@@ -1,9 +1,6 @@
 // TODO:
 // Ge feedback till user att något har lagts till i korgen
 
-// TO DO:
-// - backticks istället för konkatination
-
 // connect to HTML-document
 let body = document.querySelector("body")
 let dispDiv = document.getElementById("dispProd")
@@ -46,7 +43,7 @@ function showProducts( products ){
           "<option value='5'>5</option>" +
         "</select><br><br>" +
         "<button type='submit' class='btn btn-primary' id='" + prodId + "btn'>Add to basket</button>" +
-      "<span id='"+prodId+"span'></span></div>" +
+      "<span class='feedback' id='"+prodId+"span'></span></div>" +
     "</div>"
   }
   addListnerToBtn()
@@ -75,13 +72,16 @@ function addListnerToBtn(){
       }
       // feedback to user
       if(eSelectVal === 1){
-        document.getElementById(eSpan).innerHTML = "Added 1 ticket to cart"
-        console.log("Added 1 ticket to cart")
+        document.getElementById(eSpan).innerHTML = " Added 1 ticket to cart"
       } else if(eSelectVal === 0){
-        console.log("No tickets were added to cart")
+        document.getElementById(eSpan).innerHTML = " No tickets were added to cart"
       } else {
-        console.log("Added " + eSelectVal + " tickets to cart" )
+        document.getElementById(eSpan).innerHTML = " Added " + eSelectVal + " tickets to cart"
       }
+      // remove feedback
+      setTimeout(function (){
+        document.getElementById(eSpan).innerHTML = ""
+      }, 1200)
       // reset button value
       this.parentElement.children[3].value  = 0
         updateCart()
