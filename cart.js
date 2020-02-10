@@ -1,26 +1,41 @@
-// connect to HTML-document
+// 1. connect to HTML-document
 let dispCart = document.getElementById("dispCart")
 
-// get data from .json
-function getProducts() {
-  fetch('products.json')
-    .then(products => products.json())
-    .then(products => getProdsToCart(products))
-}
+// 2. get data from json and send it thowards getProdsToCart
 getProducts()
+
+// 3. update cart in header with current cart ticket-sum
 updateCart()
 
-// display cart
+// 2. get data from .json file
+function getProducts() {
+  fetch('products.json') // get file
+    .then(products => products.json()) // convert
+    .then(products => getProdsToCart(products)) // use with our getProdsToCart-function
+}
+
+// 3. display cart with product info and delete buttons, ticket-value change for user
 function getProdsToCart(products) {
+  // 3.1 clears dispCart innerHTML to enable putting in new info
   dispCart.innerHTML = ""
-  ifEmptyCart() // either writes empty cart or table heading
+
+  // 3.2 either writes empty cart to user or  creates a table heading
+  // "Your cart is empty"/ "Clear cart" "Destination" "Tickets" "Price per ticket" "Sum"
+  ifEmptyCart()
+
+  // 3.update cart in header with current cart ticket-sum
   updateCart()
+
+  // 3.3 initalize totalSum
   let totalSum = 0
 
+  // 3.4 loop over local storage to display added products
   for (let i = 0; i < localStorage.length; i++) {
-    if (localStorage.key(i)[0] != "i") { // remove data that isn't the correct key
+    // 3.4.1 removes garbage from local storage
+    if (localStorage.key(i)[0] != "i") {
       localStorage.removeItem(localStorage.key(i))
     }
+    // 3.4.2 initalizes values needed to display products
     let id = localStorage.key(i)
     let name = products[id].name
     let tickets = parseInt(localStorage.getItem(localStorage.key(i)))
@@ -28,6 +43,7 @@ function getProdsToCart(products) {
     let sum = tickets * price
     totalSum += sum
 
+    // 3.4.3 display items in table
     dispCart.innerHTML +=
       "<tr id='" + id + "' class='table-row'>" +
       "<td><button id ='" + id + "deleteBtn' class='btn btn-warning btn-sm'><i class='fa fa-trash'></i></button></td>" +
@@ -39,7 +55,7 @@ function getProdsToCart(products) {
       "<td>" + sum + "</td>" +
       "</tr>"
   }
-  // display table footer with total sum
+  // 3.4.4 display table footer with total sum
   dispCart.innerHTML +=
     "<thead><tr class='table-row thead'>" +
     "<th></th>" +
@@ -47,7 +63,7 @@ function getProdsToCart(products) {
     "<th></th>" +
     "<th>Total sum: </th>" +
     "<th>" + totalSum + "</th></tr></thead>"
-  // display order button and contact info if items in cart
+  // 3.4.5 display order button
   if (localStorage.length > 0) {
     dispCart.innerHTML +=
       "<thead class='thead thead-dark'><tr><th>" +
@@ -55,12 +71,16 @@ function getProdsToCart(products) {
       "</th><th></th><th></th>" +
       "<th><a href='confirmation.html'><button id='orderBtn' class='btn btn-success'>Place order</button></a></th></tr></thead>"
   }
+  // 3.2 should change local storage if there's a change of numer of items via input
   inputChange()
+  // 3.5 add listers to buttons
   getBtns()
 }
 
+// 3.2 either writes empty cart or table heading
+// "Your cart is empty"/ "Clear cart" "Destination" "Tickets" "Price per ticket" "Sum"
 function ifEmptyCart() {
-  if (localStorage.length > 0) {
+  if ( localStorage.length > 0 ) {
     document.getElementById("emptyCart").innerHTML = ""
     dispCart.innerHTML +=
       "<thead class='thead thead-dark'><tr>" +
@@ -75,7 +95,18 @@ function ifEmptyCart() {
   }
 }
 
-// should change local storage if there's a change of numer of items
+// 3. update cart in header with current cart ticket-sum
+function updateCart() {
+  let sum = 0
+  if (localStorage.length > 0) {
+    for (let i = 0; i < localStorage.length; i++) {
+      sum += parseInt(localStorage.getItem(localStorage.key(i)))
+    }
+  }
+  document.getElementById("updateCart").innerHTML = " (" + sum + ")"
+}
+
+// 3.2 should change local storage if there's a change of numer of items via input
 function inputChange() {
   let inputs = document.querySelectorAll("input")
   inputs.forEach(input => {
@@ -85,39 +116,50 @@ function inputChange() {
       } else {
         alert("Enter a number between 1-20")
       }
+      // rewrite cart
       getProducts()
     })
   })
 }
 
+// 3.5 put listers on buttons
 function getBtns() {
+  // 3.5.1 get all buttons
   let allCartBtns = document.querySelectorAll("button")
+  // 3.5.2 for all buttons add eventlister that reacts to click
   allCartBtns.forEach(btn => {
-    btn.addEventListener('click', function (e) {
+    btn.addEventListener('click', function() {
+      // get button id
       let eId = this.id
+      // get parent id
       let eParentId = this.parentElement.parentElement.id
+      // if current btn is "clear cart" clear local storage
       if (eId == "clearCartBtn") {
-        if (confirm("Are you sure you would like to delete all items in your cart?") == true) {
+        if ( confirm("Are you sure you would like to delete all items in your cart?") == true ) {
           localStorage.clear()
         }
+        // rewrite cart
         getProducts()
-      } // order 
-      else if (eId == "orderBtn") {
+      } // if order btn
+      else if ( eId == "orderBtn" ) {
         console.log("order submitted")
-      } // delete item
-      else if (eId == (eParentId + "deleteBtn")) {
-        localStorage.removeItem(eParentId) // remove from local storage
+      } // if delete btn, remove item from local storage
+      else if ( eId == (eParentId + "deleteBtn" )) {
+        localStorage.removeItem(eParentId)
+        // rewrite cart
         getProducts()
-      } // remove one item
-      else if (eId == eParentId + "MinusBtn") {
-        if (parseInt(this.nextElementSibling.value) > 0) {
+      } // if minus btn, remove one item from local storage (lower limit 0)
+      else if ( eId == eParentId + "MinusBtn" ) {
+        if ( parseInt(this.nextElementSibling.value) > 0) {
           localStorage.setItem(eParentId, (parseInt(this.nextElementSibling.value) - 1))
+          // rewrite cart
           getProducts()
         }
-      } // add item
-      else if (eId == eParentId + "PlusBtn") {
+      } // if plus btn, add item to local storage (upper limit 20)
+      else if ( eId == eParentId + "PlusBtn" ) {
         if (parseInt(this.previousSibling.value) < 20) {
           localStorage.setItem(eParentId, (parseInt(this.previousSibling.value) + 1))
+          // rewrite cart
           getProducts()
         }
       } else {
@@ -125,14 +167,4 @@ function getBtns() {
       }
     })
   })
-}
-
-function updateCart() {
-  let sum = 0
-  if (localStorage.length > 0) {
-    for (let i = 0; i < localStorage.length; i++) {
-      sum += parseInt(localStorage.getItem(localStorage.key(i)))
-    }
-  }
-  document.getElementById("updateCart").innerHTML = " (" + sum + ")"
 }
