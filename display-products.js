@@ -19,7 +19,7 @@ function showProducts( products ){ // parameter = products
   updateCart()
 
   // 5. use our product-json to display products with relevant information
-  for(let i = 0; i < 10; i++){
+  for(let i = 0; i < Object.keys(products).length; i++){ // Object.keys(products).length get number of products in JSON-file
     // 5.1 initalize variables with info needed to display product från JSON
     let imageAddress = products["id"+i].image // ett nummer i taget alla variabel. products=JSOn file ["id"+i]=ex [id1] key.image
     let name = products["id"+i].name
