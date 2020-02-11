@@ -1,6 +1,9 @@
 // 1. connect to HTML-document
 let dispOrder = document.getElementById("dispOrder")
 
+// removes items where value = 0, because this are unnecessary on confiramtion page
+removeTicketsWithValueZero()
+
 // 2. get product information from json-file och kör vår huvudfunktion
 getProducts() 
 
@@ -62,4 +65,14 @@ function getCartToOrderForm(products) {
 // 4. clear local storage 
 function clearCart(){
   localStorage.clear()
+}
+
+// remove items where value = 0
+function removeTicketsWithValueZero(){
+  for( let i = 0; i < localStorage.length; i++ ){ // loopar över local storages längd
+    if( localStorage.getItem(localStorage.key(i)) == 0 ){ // kollar om värdet = 0
+      console.log("empty")
+      localStorage.removeItem(localStorage.key(i)) // tar bort nyckel+värde ifall värdet = 0
+    }
+  }
 }

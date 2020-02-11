@@ -2,12 +2,8 @@
 let dispDiv = document.getElementById("dispProd") // get display div
 //global variabel 
 
-// shows in console if local storage is empty or if it already exits
-if( localStorage.length == 0 ) {
-  console.log("local storage empty")
-} else {
-  console.log("local storage exist");
-}
+// 1.2 checks if there is garbage in local storage and removes it
+checkForGarbageInLocalStorage()
 
 // 2. get product information from json-file
 fetch( 'products.json' )  // get file
@@ -17,7 +13,7 @@ fetch( 'products.json' )  // get file
 
 // Köra den i våra huvudfunktion. Samlar displayen för att lättare köra den flera gånger.
 // 3. display products with dropdown to choose from
-function showProducts( products ){ // parameter= products
+function showProducts( products ){ // parameter = products
 
   // 4. checks if local storage is present, and update cart-total
   updateCart()
@@ -69,20 +65,22 @@ function addListnerToBtn(){
       // get id from parent element to see which element has been clicked, lokal variabel istället för global
       let eId = this.parentElement.parentElement.id //this=knapp .parentElement=div.parentElement=div.id=divs id, divs id var samma som produktID i JSON
       // get value from select-dropdown
-      let eSelectVal = this.parentElement.children[3].value //       let eSelectVal = this=knappen.parentElement=div.children[3]=selecten.value=värdet som kunden har satt 
+      let eSelectValue = this.parentElement.children[3].value //       let eSelectVal = this=knappen.parentElement=div.children[3]=selecten.value=värdet som kunden har satt 
 
       // convert string to number
-      eSelectVal = parseInt(eSelectVal) // gör värdet till nummer.
+      eSelectValue = parseInt(eSelectValue) // gör värdet till nummer.
 
       // get current clicked span (to make displaying feedback of number of tickets possible)
       let eSpan = eId + "span" //Väljer aktuellt span.
 
       //  check if local storage is empty/or exist - and add a new sum of tickets
       // checks local storage with help of current id
+      console.log(eSelectValue)
       if( localStorage.getItem(eId) == null || parseInt(localStorage.getItem(eId)) == 0 ){ // Om id är null=tomt  eller om det är satt till 0.
-        localStorage.setItem( eId, eSelectVal ) // sätter i local storage, inget värdet sedan tidigare. 
+        if( eSelectValue !== 0 ){ // addera bara om värdet är över noll
+          localStorage.setItem( eId, eSelectValue ) // sätter i local storage, inget värdet sedan tidigare. 
+        }
       } 
-      
       // if local storage exist add new number of tickets to previous sum
       else {
         // get previous amount of tickets from local storage
@@ -90,18 +88,18 @@ function addListnerToBtn(){
         // convert string to number
         eTickets = parseInt(eTickets)
         // calculte NEW sum of tickets 
-        let eNewTicketSum = eSelectVal + eTickets //eSelectVal=värdet som lägs till ökningen + eTickets = gamla värdet som fanns i gamla storage.
+        let eNewTicketSum = eSelectValue + eTickets //eSelectVal=värdet som lägs till ökningen + eTickets = gamla värdet som fanns i gamla storage.
         // set new sum of tickets in local storage
         localStorage.setItem( eId, eNewTicketSum ) // lägger till nya värdet till LS. setItem skriver över den gamla 
       }
 
       // show feedback to user via a span we get from the html-document, set added ticket value
-      if(eSelectVal === 1){
+      if(eSelectValue === 1){
         document.getElementById(eSpan).innerHTML = " Added 1 ticket to cart" // en biljett! inte ticketssss
-      } else if(eSelectVal === 0){ // om man inte har tryckt på knappen ska det synas att man inte lagt till någon ticket.
+      } else if(eSelectValue === 0){ // om man inte har tryckt på knappen ska det synas att man inte lagt till någon ticket.
         document.getElementById(eSpan).innerHTML = " No tickets were added to cart"
       } else {
-        document.getElementById(eSpan).innerHTML = " Added " + eSelectVal + " tickets to cart"
+        document.getElementById(eSpan).innerHTML = " Added " + eSelectValue + " tickets to cart"
       }
       // remove feedback by setting innerHTML to "", after 1.2 seconds
       setTimeout(function (){ //inbyggd funktion setTimeout
@@ -134,4 +132,17 @@ function updateCart(){
   }
   // get element from html and show cart-sum
   document.getElementById("updateCart").innerHTML = " (" + sum + ")" // finns i html egen span. Skriver över (0) när det uppdateras. Det är därför man vill sätta sum=0. 
+}
+
+// 1.2 checks if there is garbage in local storage and removes it
+function checkForGarbageInLocalStorage(){
+  if( localStorage.length > 0 ) {
+    console.log("local storage exist") // shows if local storage exists in local storage
+    for( let i = 0; i < localStorage.length; i++ ){ // loopar över local storages längd
+      if( localStorage.key(i)[0] + localStorage.key(i)[1]  != "id" ){ // kollar om aktuell nyckels två första bokstäver är = "id"
+        console.log("removed: '" + localStorage.key(i) + "', '" + localStorage.getItem(localStorage.key(i)) + "'")
+        localStorage.removeItem(localStorage.key(i)) // tar bort nyckel+värde ifall dessa är felaktiga
+      }
+    }
+  }
 }
