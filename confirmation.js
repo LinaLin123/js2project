@@ -1,18 +1,18 @@
 // 1. connect to HTML-document
 let dispOrder = document.getElementById("dispOrder")
 
-// 2. get product information from json-file
-getProducts()
+// 2. get product information from json-file och kör vår huvudfunktion
+getProducts() 
 
-// 2. get product information from json-file and send to getcartToOrderForm-function
+// 2. get product information from json-file and send to getcartToOrderForm-function. Vi har skapat till en funktionen eftersom vi vill köra den flera gånger
 function getProducts() {
   fetch('products.json')
     .then(products => products.json())
-    .then(products => getcartToOrderForm(products))
+    .then(products => getCartToOrderForm(products))
 }
 
 // 3. display confirmation page with items from local storage in a table
-function getcartToOrderForm(products) {
+function getCartToOrderForm(products) {
   // 3.1 add table header
   dispOrder.innerHTML +=
     "<thead><tr class='thead thead-dark'>" +
@@ -22,18 +22,18 @@ function getcartToOrderForm(products) {
     "<th>Price/ticket</th>" +
     "<th>Sum</th></tr></thead>"
 
-  // 3.2 initalize totalSum
-  let totalSum = 0
+  // 3.2 initalize totalSum, en variabel för att spara summa i.
+  let totalSum = 0 
 
   // 3.3 loop over local storage to display cart products
-  for (let i = 0; i < localStorage.length; i++) {
+  for (let i = 0; i < localStorage.length; i++) { // < localStorage.length använda längden för veta hur många varv loopar går genom
     // 3.3.1 initalizes values needed to display products
-    let id = localStorage.key(i)
-    let name = products[id].name
-    let tickets = parseInt(localStorage.getItem(localStorage.key(i)))
-    let price = products[id].price
-    let sum = tickets * price
-    totalSum += sum
+    let id = localStorage.key(i) // Id från LS
+    let name = products[id].name //namn från JSON
+    let tickets = parseInt(localStorage.getItem(localStorage.key(i))) // antal biljetter
+    let price = products[id].price // pris från JSON
+    let sum = tickets * price // pris gånger med antal
+    totalSum += sum // totalSum som är från början 0 där det adderas på beroende antal biljetter. += addera på och inte skriva över
 
     // 3.3.2 display items in table
     dispOrder.innerHTML +=
@@ -44,7 +44,9 @@ function getcartToOrderForm(products) {
       "<td>" + price + "</td>" +
       "<td>" + sum + "</td>" +
       "</tr>"
-  }
+  } // for loop slutar
+
+
   // 3.4 display table footer with total sum 
   dispOrder.innerHTML +=
     "<thead><tr class='thead thead-dark''>" +
@@ -52,12 +54,12 @@ function getcartToOrderForm(products) {
     "<th></th>" +
     "<th></th>" +
     "<th>Total sum: </th>" +
-    "<th>" + totalSum + "</th></tr></thead>"
-  // 4. After displaying items, clear cart
+    "<th>" + totalSum + "</th></tr></thead>" // här används totalSum för visa användaren
+  // 4. After displaying items, clear cart. Måste vara efter for loopen.
   clearCart()
 }
 
-// 4. clear local storage
+// 4. clear local storage 
 function clearCart(){
   localStorage.clear()
 }
