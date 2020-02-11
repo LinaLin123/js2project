@@ -1,5 +1,4 @@
 // 1. connect to HTML-document
-let body = document.querySelector("body") // get body-element from html
 let dispDiv = document.getElementById("dispProd") // get display div
 
 // shows in console if local storage is empty or if it already exits
