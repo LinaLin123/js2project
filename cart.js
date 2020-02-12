@@ -5,19 +5,19 @@ let dispCart = document.getElementById("dispCart")
 getProducts()
 
 // 3. update cart in header with current cart ticket-sum
-updateCart() // header
+updateCart() 
 
 // 2. get data from .json file
 function getProducts() {
-  fetch('products.json') // get file
+  fetch('products.json')
     .then(products => products.json()) // convert
-    .then(products => getProdsToCart(products)) // use with our getProdsToCart-function
+    .then(products => getProdsToCart(products)) 
 }
 
 // 3. display cart with product info and delete buttons, ticket-value change for user
 function getProdsToCart(products) {
   // 3.1 clears dispCart innerHTML to enable putting in new info
-  dispCart.innerHTML = "" // skriver över 
+  dispCart.innerHTML = ""
 
   // 3.2 either writes empty cart to user or  creates a table heading
   // "Your cart is empty"/ "Clear cart" "Destination" "Tickets" "Price per ticket" "Sum"
@@ -32,8 +32,8 @@ function getProdsToCart(products) {
   // 3.4 loop over local storage to display added products
   for (let i = 0; i < localStorage.length; i++) {
     // 3.4.1 removes garbage from local storage
-    if (localStorage.key(i)[0] != "i") { // om nyckel inte hör hemma tar man bort värdet och nycklar, man resar nyckelvärde paret.
-      localStorage.removeItem(localStorage.key(i)) // första bokstaven i värdet som hämtas med hjälp av keys. 
+    if (localStorage.key(i)[0] != "i") {
+      localStorage.removeItem(localStorage.key(i)) 
     }
     // 3.4.2 initalizes values needed to display products
     let id = localStorage.key(i)
@@ -45,8 +45,8 @@ function getProdsToCart(products) {
 
     // 3.4.3 display items in table
     dispCart.innerHTML +=
-      "<tr id='" + id + "' class='table-row'>" + // id0, samma som våra produkt id. Lättare att hålla koll. Det underlätta 
-      "<td><button id ='" + id + "deleteBtn' class='btn btn-warning btn-sm'><i class='fa fa-trash'></i></button></td>" + // id0 id0minus id0plus, osv. Lättare att koppla ihop för att visa man pratar om samma rad. 
+      "<tr id='" + id + "' class='table-row'>" +
+      "<td><button id ='" + id + "deleteBtn' class='btn btn-warning btn-sm'><i class='fa fa-trash'></i></button></td>" + 
       "<td>" + name + "</td>" +
       "<td><button id='" + id + "MinusBtn' class='minus btn btn-info btn-sm'><i class='fa fa-minus'></i></button>" +
       "<input type='text' id='" + id + "Input' class='inputAmount' value='" + tickets + "'></input>" +
@@ -64,7 +64,7 @@ function getProdsToCart(products) {
     "<th>Total sum: </th>" +
     "<th>" + totalSum + "</th></tr></thead>"
   // 3.4.5 display order button
-  if (localStorage.length > 0) { // om LS existerar visas order btn
+  if (localStorage.length > 0) { 
     dispCart.innerHTML +=
       "<thead class='thead thead-dark'><tr><th>" +
       "</th><th>" +
@@ -81,7 +81,7 @@ function getProdsToCart(products) {
 // 3.2 either writes empty cart or table heading
 // "Your cart is empty"/ "Clear cart" "Destination" "Tickets" "Price per ticket" "Sum"
 function ifEmptyCart() {
-  if ( localStorage.length > 0 ) { // finns i ngt i LS
+  if ( localStorage.length > 0 ) { 
     document.getElementById("emptyCart").innerHTML = ""
     dispCart.innerHTML +=
       "<thead class='thead thead-dark'><tr>" +
@@ -91,7 +91,7 @@ function ifEmptyCart() {
       "<th>Price per ticket</th>" +
       "<th>Sum</th>"
     "</tr></thead>"
-  } else { // finns inget LS, skriv då empty
+  } else { 
     document.getElementById("emptyCart").innerHTML = "Your cart is empty!"
   }
 }
@@ -109,16 +109,16 @@ function updateCart() {
 
 // 3.2 should change local storage if there's a change of numer of items via input
 function inputChange() {
-  let inputs = document.querySelectorAll("input") // input fälet
+  let inputs = document.querySelectorAll("input")
   inputs.forEach(input => { // array liknande 
-    input.addEventListener('change', function (e) { // change, förändring i input.
-      if( this.value >= 0 && this.value <=20 ){ // changes localstorage value to input value. this=inputfälet 0 eller högre. eller upp till 20.
-        localStorage.setItem(this.parentElement.parentElement.id, this.value) // lägger till nya värdet i LS. this.parentElement.parentElement.id= id. this.value= nya värdet i input fältet. 
-      } else { // annars alert till användare
+    input.addEventListener('change', function (e) { 
+      if( this.value >= 0 && this.value <=20 ){ 
+        localStorage.setItem(this.parentElement.parentElement.id, this.value) 
+      } else { 
         alert("Enter a number between 1-20")
       }
       // rewrite cart
-      getProducts() // ritar om varukorgen, först med function getProducts(), den hämtar info jSon och sist som den kör med argument i function getProdsToCart(products)
+      getProducts() 
     })
   })
 }
@@ -131,34 +131,34 @@ function getBtns() {
   allCartBtns.forEach(btn => {
     btn.addEventListener('click', function() {
       // get button id
-      let eId = this.id // = knappens id
+      let eId = this.id 
       // get parent id
-      let eParentId = this.parentElement.parentElement.id // this=knappen. 
+      let eParentId = this.parentElement.parentElement.id
       
       // if current btn is "clear cart" clear local storage
       if (eId == "clearCartBtn") {
-        if ( confirm("Are you sure you would like to delete all items in your cart?") == true ) { // confirm får man okey eller cancel. Okej== true. Då raderas allt.
+        if ( confirm("Are you sure you would like to delete all items in your cart?") == true ) { 
           localStorage.clear()
         }
-        // rewrite cart.
-        getProducts() // När allt raderas måste rita om carten. 
+        // rewrite cart
+        getProducts() 
       }
       
       // if order btn
       else if ( eId == "orderBtn" ) {
-        console.log("order submitted") // knappen i sig är länk och behöver egentligen ingen event listner
+        console.log("order submitted")
       } 
       
       // if delete btn, remove item from local storage
-      else if ( eId == (eParentId + "deleteBtn" )) { // eId=id0deleteBtn även (eParentId + "deleteBtn") =id0deleteBtn
-        localStorage.removeItem(eParentId) // tar bort det item från LS
-        // rewrite cart, ritas varukorgen igen.
+      else if ( eId == (eParentId + "deleteBtn" )) { 
+        localStorage.removeItem(eParentId)
+        // rewrite cart
         getProducts()
       } // if minus btn, remove one item from local storage (lower limit 0)
-      else if ( eId == eParentId + "MinusBtn" ) { //eId=id0minusBtn jämförelse med eParentId=id0 + "MinusBtn"= MinusBtn id0minusBtn=id0minusBtn. om villkor stämmer körs if satsen.
-        let previousInputValue = parseInt(this.nextElementSibling.value) // hämtar värdet från input fältet och det sparas som sträng och skapar om.
-        if ( previousInputValue > 0) { // Plus och minus knapper ändrar värdet i input och det skickar vidare till LS.
-          localStorage.setItem( eParentId, (previousInputValue-1) ) // eParentId=nyckel id0. (previousInputValue)= tidigare värdet - 1, få nya värdet som sätts.
+      else if ( eId == eParentId + "MinusBtn" ) {
+        let previousInputValue = parseInt(this.nextElementSibling.value) 
+        if ( previousInputValue > 0) { 
+          localStorage.setItem( eParentId, (previousInputValue-1) ) 
           // rewrite cart
           getProducts()
         }

@@ -2,32 +2,28 @@
 let dispDiv = document.getElementById("dispProd") // get display div
 //global variabel 
 
-// 1.2 checks if there is garbage in local storage and removes it
+// 1.2 check if there is garbage in local storage and removes it
 checkForGarbageInLocalStorage()
 
 // 2. get product information from json-file
-fetch( 'products.json' )  // get file
-.then( prods => prods.json() )  // convert
-.then( prods => showProducts( prods ) ) // use with our showProducts-function
-//kallar funktionen och kör den med produktinformationen som hämtar från json, som argument prods
+fetch( 'products.json' )
+.then( prods => prods.json() ) 
+.then( prods => showProducts( prods ) ) 
 
-// Köra den i våra huvudfunktion. Samlar displayen för att lättare köra den flera gånger.
 // 3. display products with dropdown to choose from
-function showProducts( products ){ // parameter = products
+function showProducts( products ){
 
   // 4. checks if local storage is present, and update cart-total
   updateCart()
 
   // 5. use our product-json to display products with relevant information
-  for(let i = 0; i < Object.keys(products).length; i++){ // Object.keys(products).length get number of products in JSON-file
-    // 5.1 initalize variables with info needed to display product från JSON
-    let prodId = Object.keys(products)[i] // skapar id till diven = id1, id2, sätta id i diven samma som produktens id i JSON
+  for(let i = 0; i < Object.keys(products).length; i++){
+    let prodId = Object.keys(products)[i] 
     let imageAddress = products[prodId].image
     let name = products[prodId].name
     let description = products[prodId].description
     let price = products[prodId].price
 
-    //Använder variablerna inne i div innerhtml, underlätta att läsa. Varje div får unika id eftersom vi parar ihop id med produktens id. 
     // 5.2 create div for each product with product info, select and submitbtn
     dispDiv.innerHTML += 
     "<div id='" + prodId + "' class='prod card'> "+
@@ -54,61 +50,62 @@ function showProducts( products ){ // parameter = products
 
 // 6. add lister to submit buttons and update local storage
 function addListnerToBtn(){
-  // 6.1 gets button element from html-document
-  let allBtns = document.querySelectorAll("button") //hämtar alla knappar
 
-  // 6.2 for all buttons, som en array liknade lista.
+  // 6.1 gets button element from html-document
+  let allBtns = document.querySelectorAll("button")
+
+  // 6.2 for all buttons
   allBtns.forEach( btn => {
+
     // 6.3 add an eventlister for clicks
     btn.addEventListener('click',function(){ 
-      // get id from parent element to see which element has been clicked, lokal variabel istället för global
-      let eId = this.parentElement.parentElement.id //this=knapp .parentElement=div.parentElement=div.id=divs id, divs id var samma som produktID i JSON
+      // get id from parent element to see which element has been clicked
+      let eId = this.parentElement.parentElement.id
       // get value from select-dropdown
-      let eSelectValue = this.parentElement.children[3].value //       let eSelectVal = this=knappen.parentElement=div.children[3]=selecten.value=värdet som kunden har satt 
+      let eSelectValue = this.parentElement.children[3].value
 
       // convert string to number
       eSelectValue = parseInt(eSelectValue) // gör värdet till nummer.
 
       // get current clicked span (to make displaying feedback of number of tickets possible)
-      let eSpan = eId + "span" //Väljer aktuellt span.
+      let eSpan = eId + "span" 
 
-      //  check if local storage is empty/or exist - and add a new sum of tickets
-      // checks local storage with help of current id
+      // check if local storage is empty/or exist - and add a new sum of tickets
       if( localStorage.getItem(eId) == null || parseInt(localStorage.getItem(eId)) == 0 ){ // Om id är null=tomt  eller om det är satt till 0.
-        if( eSelectValue !== 0 ){ // addera bara om värdet är över noll
-          localStorage.setItem( eId, eSelectValue ) // sätter i local storage, inget värdet sedan tidigare. 
+        if( eSelectValue !== 0 ){ 
+          localStorage.setItem( eId, eSelectValue )
         }
       } 
       // if local storage exist add new number of tickets to previous sum
       else {
         // get previous amount of tickets from local storage
-        let eTickets = localStorage.getItem(eId) //Hämtar all gamal värdet från LS
+        let eTickets = localStorage.getItem(eId)
         // convert string to number
         eTickets = parseInt(eTickets)
         // calculte NEW sum of tickets 
-        let eNewTicketSum = eSelectValue + eTickets //eSelectVal=värdet som lägs till ökningen + eTickets = gamla värdet som fanns i gamla storage.
+        let eNewTicketSum = eSelectValue + eTickets
         // set new sum of tickets in local storage
-        localStorage.setItem( eId, eNewTicketSum ) // lägger till nya värdet till LS. setItem skriver över den gamla 
+        localStorage.setItem( eId, eNewTicketSum )
       }
 
       // show feedback to user via a span we get from the html-document, set added ticket value
       if(eSelectValue === 1){
-        document.getElementById(eSpan).innerHTML = " Added 1 ticket to cart" // en biljett! inte ticketssss
-      } else if(eSelectValue === 0){ // om man inte har tryckt på knappen ska det synas att man inte lagt till någon ticket.
+        document.getElementById(eSpan).innerHTML = " Added 1 ticket to cart" 
+      } else if(eSelectValue === 0){ 
         document.getElementById(eSpan).innerHTML = " No tickets were added to cart"
       } else {
         document.getElementById(eSpan).innerHTML = " Added " + eSelectValue + " tickets to cart"
       }
       // remove feedback by setting innerHTML to "", after 1.2 seconds
-      setTimeout(function (){ //inbyggd funktion setTimeout
-        document.getElementById(eSpan).innerHTML = "" // lämnar tomt span.
+      setTimeout(function (){ 
+        document.getElementById(eSpan).innerHTML = ""
       }, 1200) //1200 mms
       
       // reset select value
-      this.parentElement.children[3].value  = 0 // dropdown nollställs.
+      this.parentElement.children[3].value  = 0 
       
       // 4. update cart-sum in header
-      updateCart() // sumerar LS och carten. 
+      updateCart()
     })
   })
 }
@@ -117,29 +114,26 @@ function addListnerToBtn(){
 function updateCart(){
   // 4.1 initialize sum in cart
   let sum = 0 // skapa variabel som man kan skapa summa i. 
-
   // if there is already items in cart, loop over local storage and set new sum
-  if( localStorage.length > 0) { //localStorage.length > 0 = om det finns något i LS
-
-//om det finnns ska loopa över värderna och addera dem till total summa i Cart med korg
-    for( let i = 0; i < localStorage.length; i++ ){ // loopar genom varje och hämtar.
-      let keyId = localStorage.key(i) // hämtar nyckel = vår id. 
+  if( localStorage.length > 0) {
+    for( let i = 0; i < localStorage.length; i++ ){ 
+      let keyId = localStorage.key(i) 
       
-      sum += parseInt( localStorage.getItem( keyId ) ) // ex id0 localStorage.key(i) = en specifik nyckel. 
+      sum += parseInt( localStorage.getItem( keyId ) )
     }
   }
   // get element from html and show cart-sum
-  document.getElementById("updateCart").innerHTML = " (" + sum + ")" // finns i html egen span. Skriver över (0) när det uppdateras. Det är därför man vill sätta sum=0. 
+  document.getElementById("updateCart").innerHTML = " (" + sum + ")"
 }
 
 // 1.2 checks if there is garbage in local storage and removes it
 function checkForGarbageInLocalStorage(){
   if( localStorage.length > 0 ) {
-    console.log("local storage exist") // shows if local storage exists in local storage
-    for( let i = 0; i < localStorage.length; i++ ){ // loopar över local storages längd
-      if( localStorage.key(i)[0] + localStorage.key(i)[1]  != "id" ){ // kollar om aktuell nyckels två första bokstäver är = "id"
+    console.log("local storage exist")
+    for( let i = 0; i < localStorage.length; i++ ){ 
+      if( localStorage.key(i)[0] + localStorage.key(i)[1]  != "id" ){
         console.log("removed: '" + localStorage.key(i) + "', '" + localStorage.getItem(localStorage.key(i)) + "'")
-        localStorage.removeItem(localStorage.key(i)) // tar bort nyckel+värde ifall dessa är felaktiga
+        localStorage.removeItem(localStorage.key(i))
       }
     }
   }

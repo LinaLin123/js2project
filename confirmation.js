@@ -4,10 +4,10 @@ let dispOrder = document.getElementById("dispOrder")
 // removes items where value = 0, because this are unnecessary on confiramtion page
 removeTicketsWithValueZero()
 
-// 2. get product information from json-file och kör vår huvudfunktion
+// 2. get product information from json-file and run our main function
 getProducts() 
 
-// 2. get product information from json-file and send to getcartToOrderForm-function. Vi har skapat till en funktionen eftersom vi vill köra den flera gånger
+// 2. get product information from json-file and send to getcartToOrderForm-function
 function getProducts() {
   fetch('products.json')
     .then(products => products.json())
@@ -25,18 +25,18 @@ function getCartToOrderForm(products) {
     "<th>Price/ticket</th>" +
     "<th>Sum</th></tr></thead>"
 
-  // 3.2 initalize totalSum, en variabel för att spara summa i.
+  // 3.2 initalize totalSum
   let totalSum = 0 
 
   // 3.3 loop over local storage to display cart products
-  for (let i = 0; i < localStorage.length; i++) { // < localStorage.length använda längden för veta hur många varv loopar går genom
+  for (let i = 0; i < localStorage.length; i++) { 
     // 3.3.1 initalizes values needed to display products
-    let id = localStorage.key(i) // Id från LS
-    let name = products[id].name //namn från JSON
-    let tickets = parseInt(localStorage.getItem(localStorage.key(i))) // antal biljetter
-    let price = products[id].price // pris från JSON
-    let sum = tickets * price // pris gånger med antal
-    totalSum += sum // totalSum som är från början 0 där det adderas på beroende antal biljetter. += addera på och inte skriva över
+    let id = localStorage.key(i) 
+    let name = products[id].name 
+    let tickets = parseInt(localStorage.getItem(localStorage.key(i))) 
+    let price = products[id].price 
+    let sum = tickets * price 
+    totalSum += sum 
 
     // 3.3.2 display items in table
     dispOrder.innerHTML +=
@@ -57,8 +57,8 @@ function getCartToOrderForm(products) {
     "<th></th>" +
     "<th></th>" +
     "<th>Total sum: </th>" +
-    "<th>" + totalSum + "</th></tr></thead>" // här används totalSum för visa användaren
-  // 4. After displaying items, clear cart. Måste vara efter for loopen.
+    "<th>" + totalSum + "</th></tr></thead>" 
+  // 4. After displaying items, clear cart
   clearCart()
 }
 
@@ -69,10 +69,10 @@ function clearCart(){
 
 // remove items where value = 0
 function removeTicketsWithValueZero(){
-  for( let i = 0; i < localStorage.length; i++ ){ // loopar över local storages längd
-    if( localStorage.getItem(localStorage.key(i)) == 0 ){ // kollar om värdet = 0
+  for( let i = 0; i < localStorage.length; i++ ){ 
+    if( localStorage.getItem(localStorage.key(i)) == 0 ){ 
       console.log("empty")
-      localStorage.removeItem(localStorage.key(i)) // tar bort nyckel+värde ifall värdet = 0
+      localStorage.removeItem(localStorage.key(i))
     }
   }
 }
