@@ -156,16 +156,17 @@ function getBtns() {
         getProducts()
       } // if minus btn, remove one item from local storage (lower limit 0)
       else if ( eId == eParentId + "MinusBtn" ) { //eId=id0minusBtn jämförelse med eParentId=id0 + "MinusBtn"= MinusBtn id0minusBtn=id0minusBtn. om villkor stämmer körs if satsen.
-        if ( parseInt(this.nextElementSibling.value) > 0) { // hämtar värdet från input fältet och det sparas som sträng och skapar om. Plus och minus knapper ändrar värdet i input och det skickar vidare till LS.
-          localStorage.setItem(eParentId, (parseInt(this.nextElementSibling.value) - 1)) //eParentId=nyckel id0. (this.nextElementSibling.value)= tidigare värdet - 1, få nya värdet som sätts.
-        
+        let previousInputValue = parseInt(this.nextElementSibling.value) // hämtar värdet från input fältet och det sparas som sträng och skapar om.
+        if ( previousInputValue > 0) { // Plus och minus knapper ändrar värdet i input och det skickar vidare till LS.
+          localStorage.setItem( eParentId, (previousInputValue-1) ) // eParentId=nyckel id0. (previousInputValue)= tidigare värdet - 1, få nya värdet som sätts.
           // rewrite cart
           getProducts()
         }
       } // if plus btn, add item to local storage (upper limit 20)
       else if ( eId == eParentId + "PlusBtn" ) {
-        if (parseInt(this.previousSibling.value) < 20) {
-          localStorage.setItem(eParentId, (parseInt(this.previousSibling.value) + 1))
+        let previousInputValue = parseInt(this.previousSibling.value)
+        if ( previousInputValue < 20) {
+          localStorage.setItem(eParentId, (previousInputValue+1) )
           // rewrite cart
           getProducts()
         }

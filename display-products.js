@@ -21,12 +21,11 @@ function showProducts( products ){ // parameter = products
   // 5. use our product-json to display products with relevant information
   for(let i = 0; i < Object.keys(products).length; i++){ // Object.keys(products).length get number of products in JSON-file
     // 5.1 initalize variables with info needed to display product från JSON
-    let imageAddress = products["id"+i].image // ett nummer i taget alla variabel. products=JSOn file ["id"+i]=ex [id1] key.image
-    let name = products["id"+i].name
-    let description = products["id"+i].description
-    let price = products["id"+i].price
-    let prodId = "id"+i // skapar id till diven = id1, id2, sätta id i diven samma som produktens id i JSON
-
+    let prodId = Object.keys(products)[i] // skapar id till diven = id1, id2, sätta id i diven samma som produktens id i JSON
+    let imageAddress = products[prodId].image
+    let name = products[prodId].name
+    let description = products[prodId].description
+    let price = products[prodId].price
 
     //Använder variablerna inne i div innerhtml, underlätta att läsa. Varje div får unika id eftersom vi parar ihop id med produktens id. 
     // 5.2 create div for each product with product info, select and submitbtn
@@ -75,7 +74,6 @@ function addListnerToBtn(){
 
       //  check if local storage is empty/or exist - and add a new sum of tickets
       // checks local storage with help of current id
-      console.log(eSelectValue)
       if( localStorage.getItem(eId) == null || parseInt(localStorage.getItem(eId)) == 0 ){ // Om id är null=tomt  eller om det är satt till 0.
         if( eSelectValue !== 0 ){ // addera bara om värdet är över noll
           localStorage.setItem( eId, eSelectValue ) // sätter i local storage, inget värdet sedan tidigare. 
